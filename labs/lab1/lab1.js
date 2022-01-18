@@ -1,6 +1,8 @@
 'use strict';
 /**
- * Reflection question 1
+ * Reflection question 1:
+ * Det är pga att false kan innebära flera saker som t.ex. false, undefiend, 0, null, NaN eller "". 
+ * Så man måste va speficik på vad false kan innebära. Sen betyder det då att resten är true.
  */
 
 const imported = require("./inventory.js");
