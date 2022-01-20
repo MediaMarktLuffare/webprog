@@ -126,25 +126,20 @@ class ComposeSalad extends Component {
     );
   }
 }
-
 export default ComposeSalad;
 \end{Code}
-
 \noindent A few observations: 1, remember to export the component name, otherwise you can't instantiate it outside the file. 2, note how you can mix JavaScript and JSX in the \code{render()} function. 3, \code{key=\{name\}} helps react track witch part of the DOM to render when data changes, read about it in the react documentation. 4, \code{className="container"} is a bootstrap class that adds some styling to the page so it looks nicer. Style other html elements you add with bootstrap css classes. 4, JSX does not have comments, but you can use embedded JavaScript for that:
 \begin{Code}
 <span>
   {/* this part won't do anything right now */}
 </span>
 \end{Code}
-
 \item Lets use the component, instantiate it in \code{App.js}:
 \begin{Code}
 import ComposeSalad from './ComposeSalad';
-
 // add this line to the existing JSX in your render() function:
 <ComposeSalad inventory={inventory} />
 \end{Code}
-
 \item In your \code{ComposeSalad} react component, add a html form for composing a salad, see \url{https://reactjs.org/docs/forms.html}.\\
 \noindent some requirements:
 \begin{itemize}
@@ -168,30 +163,20 @@ import ComposeSalad from './ComposeSalad';
   \item Clear the form after a salad is ordered, so the customer can start on a new salad from scratch. Note, you can not remove properties from the state object, just change their value. There are two alternatives: set values to \code{false} to indicate that this option is not selected, or store the form state in an object stored in a state property, i.e. \code{this.setState(\{formValues: \{\}\})\};}.
   \item The default behaviour of form submission is to send a http GET request to the server. We do not want this since we handle the action internally in the app. Stop the default action by calling \code{event.preventDefault()}.
 \end{itemize}
-
 \item Store the salad order, i.e. a list of \code{Salad} objects, in the state of \code{App}.
-
 \item Create a react component to view the salad order. The order should be an input to the component, as \code{inventory} is in \code{ComposeSalad}.
-
 \item Add the \code{ViewOrder} component to \code{App}, i.e. \code{<ViewOrder order='{this.state.order'}>}. This demonstrates the declarative power of react. When the state changes all affected subcomponents will automatically be re-renderd. Remember to use \code{this.setState(newValues)} to update the state.
 \newline
 \newline
 An order can contain several salads. Remember to set the \code{key} attribute in the repeated html/JSX element. Avoid using array index as key. This can break your application when a salad is removed from the list. This is explained in many blog posts, for example \url{https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318}.
 \\ \noindent \emph{Hint 1:} Introduce an \code{id} property in the \code{Salad} objects. This is not only useful for the \code{key} attribute. It is also needed in all situations where you need to refer to a specific salad from the html code, e.g. a remove or edit button in the order view. 
 \\ \noindent \emph{Hint 2:} To generate a unique id, add a static \code{getUniqueId()} property to \code{Salad}. Implement it using a \code{nextId} counter. Where do you place the counter? Is it private so you know no one else can tamper with it, e.g. forgetting to increment it when using a value.
-
 \item \emph{Optional assignment 1} Add a remove button to the list of salads in the \code{ViewOrder} component. Remember, \code{props} are read only. The original list is in the \code{App} component.
-
 \item \emph{Optional assignment 2}  add functionality so the user can edit a previously created salad. Add an edit button to each row in the list of salads in the \code{ViewOrder} component. You also need modify the \code{ComposeSalad} component so it can be used for editing. Use \code{props} to pass the salad to be edited. Add a property to the component state to indicate if it is in create or edit mode. Use this to give the the submit button a proper text.
-
 Th edit scenario is a good use case for a modal wrapper around the \code{ComposeSalad} component. For edit, a pop-up window will appear, and when done the user is back in the list of the salads. Note, do all editing on a copy of the salad object, else you can not cancel an edit.
 \\ \emph{Hint 1: } pass the the salad to edit as a \code{prop} to \code{ComposeSalad}. To create a new salad, pass an empty object. The \code{Salad.id} property is a good indicator to distinguish between create and update. If it has a id, you edit, and if it is \code{undefined}, you create a new salad. 
 \\ \emph{Hint 2: } Do this assignment in two steps, first add the functionality to view the salad, then continue with changes needed to save the updated salad.
-
 \item This is all for now. In the next lab we will introduce a router and move the \code{ComposeSalad} and \code{ViewOrder} to separate pages.
-
 \end{Assignments}
-
 \input{../prechapters/licence-contributors.tex}
-
 \end{document}
