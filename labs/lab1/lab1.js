@@ -5,39 +5,109 @@
  * Så man måste va speficik på vad false kan innebära. Sen betyder det då att resten är true.
  */
 
-const imported = require("./inventory.js");
-console.log(imported.inventory['Sallad']);
+const imported = require("./inventory.js"); //CommonJS
+//console.log(imported.inventory['Sallad']);
+//console.log(imported.inventory['Krutonger']);
 
-/*
-console.log('Object.keys():')
+
+console.log('Object.keys():');
 let names = Object.keys(imported.inventory);
 names
 .sort((a, b) => a.localeCompare(b, "sv", {sensitivity: 'case'}))
 .forEach(name => console.log(name));
+
+/*
+console.log('\nObject.keys():');
+for(const name in imported.inventory){
+    console.log(name);
+}
+console.log('Not sorted');
 */
 
 /**
  * Reflection question 2
+ * Man måste tänka på vart eventet sker, exekveringen av koden sker int inte i sort. Fråga varför annars.
  */
 
 console.log('\n--- Assignment 1 ---------------------------------------')
 
-// console.log(makeOptions(imported.inventory, 'foundation'));
+
+
+//console.log(makeOptions(imported.inventory, 'foundation'));
 
 console.log('\n--- Assignment 2 ---------------------------------------')
-/*
-let myCaesarSalad = new Salad()
-.add('Sallad', imported.inventory['Sallad'])
-.add('Kycklingfilé', imported.inventory['Kycklingfilé'])
-.add('Bacon', imported.inventory['Bacon'])
-.add('Krutonger', imported.inventory['Krutonger'])
-.add('Parmesan', imported.inventory['Parmesan'])
-.add('Ceasardressing', imported.inventory['Ceasardressing'])
-.add('Gurka', imported.inventory['Gurka']);
+
+class Salad {
+    constructor(){
+        this.foundation = [];
+        this.protein = [];
+        this.extra = [];
+        this.dressing = [];
+    }
+
+    add(name, properties) {
+        if(properties.foundation){
+            if(!this.foundation.length){
+                this.foundation.push(name);
+                console.log('Foundation added: ' + name);
+            } else {
+                console.log('Error: You can not have more than one foundation!');
+            }
+        } else if(properties.protein){
+            this.protein.push(name);
+            console.log('Protein added: ' + name);
+        } else if(properties.extra){
+            this.extra.push(name);
+            console.log('Extra added: ' + name);
+        } else if(properties.dressing){
+            this.dressing.push(name);
+            console.log('Dressing added: ' + name);
+        }
+        //console.log(name + ' not added!');
+    }
+
+    remove(name) {
+        if(this.foundation.indexOf(name) > -1){
+            this.foundation.splice(this.foundation.indexOf(name),1);
+            console.log('Foundation removed: ' + name);
+        } else if(this.protein.indexOf(name) > -1){
+            this.protein.splice(this.protein.indexOf(name),1);
+            console.log('Protein removed: ' + name);
+        } else if(this.extra.indexOf(name) > -1){
+            this.extra.splice(this.extra.indexOf(name),1);
+            console.log('Extra removed: ' + name);
+        } else if(this.dressing.indexOf(name) > -1){
+            this.dressing.splice(this.dressing.indexOf(name),1);
+            console.log('Dressing removed' + name);
+        }
+        //console.log(name + ' not removed!');
+    }
+
+    //använd concat för alla tre,
+    getPrice(){
+        
+    }
+
+    count(property){
+
+    }
+}
+
+//console.log('Test '+imported.inventory['Sallad'].foundation);
+
+let myCaesarSalad = new Salad();
+
+myCaesarSalad.add('Sallad', imported.inventory['Sallad']);
+myCaesarSalad.add('Kycklingfilé', imported.inventory['Kycklingfilé']);
+myCaesarSalad.add('Bacon', imported.inventory['Bacon']);
+myCaesarSalad.add('Krutonger', imported.inventory['Krutonger']);
+myCaesarSalad.add('Parmesan', imported.inventory['Parmesan']);
+myCaesarSalad.add('Ceasardressing', imported.inventory['Ceasardressing']);
+myCaesarSalad.add('Gurka', imported.inventory['Gurka']);
 console.log(JSON.stringify(myCaesarSalad) + '\n');
 myCaesarSalad.remove('Gurka');
 console.log(JSON.stringify(myCaesarSalad) + '\n');
-*/
+
 console.log('\n--- Assignment 3 ---------------------------------------')
 //console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
 // En ceasarsallad kostar 45kr
