@@ -178,7 +178,7 @@ class GourmetSalad extends Salad{
     getPrice(){
         const inventory = imported.inventory;
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
-        return salad.reduce((accumulator, currentValue) => accumulator + inventory[currentValue.name].price * currentValue.size, 0);
+        return salad.reduce((accumulator, currentValue) => accumulator + inventory[currentValue].price * currentValue.size, 0);
     }
 }
 
