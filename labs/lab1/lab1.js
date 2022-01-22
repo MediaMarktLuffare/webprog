@@ -32,7 +32,7 @@ console.log('Not sorted');
 console.log('\n--- Assignment 1 ---------------------------------------')
 
 /*
-let godHelp = function makeOptions(inventory, selectOption){
+let godHelpMe = function makeOptions(inventory, selectOption){
     inventory = imported.inventory;
     selectOption = 'foundation'; //onödig?
 
@@ -103,20 +103,30 @@ class Salad {
         //console.log(name + ' not removed!');
     }
 
-    //använd concat för alla tre,
+    //addera 4 arrays utan for loop? concat stackoverflow, reduce livecodedev
     getPrice(){
-        
+        const inventory = imported.inventory;
+        let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
+        return salad.reduce((accumulator, currentValue) => accumulator + inventory[currentValue].price, 0);
     }
 
+    //låser man count här? eller i add function?
     count(property){
-        
+        if(property === 'foundation'){
+            return this.foundation.length;
+        } else if(property === 'protein'){
+            return this.protein.length;
+        } else if(property === 'extra'){
+            return this.extra.length;
+        } else if(property === 'dressing'){
+            return this.dressing.length;
+        }
     }
 }
 
 //console.log('Test '+imported.inventory['Sallad'].foundation);
 
 let myCaesarSalad = new Salad();
-
 myCaesarSalad.add('Sallad', imported.inventory['Sallad']);
 myCaesarSalad.add('Kycklingfilé', imported.inventory['Kycklingfilé']);
 myCaesarSalad.add('Bacon', imported.inventory['Bacon']);
@@ -128,10 +138,11 @@ console.log(JSON.stringify(myCaesarSalad) + '\n');
 myCaesarSalad.remove('Gurka');
 console.log(JSON.stringify(myCaesarSalad) + '\n');
 
+
 console.log('\n--- Assignment 3 ---------------------------------------')
-//console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
+console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
 // En ceasarsallad kostar 45kr
-//console.log('En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör');
+console.log('En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör');
 // En ceasarsallad har 3 tillbehör
 
 /**  reflection question 3
@@ -149,6 +160,9 @@ console.log('check 2: ' + (Object.prototype === Object.getPrototypeOf(Salad.prot
 */
 
 console.log('\n--- Assignment 4 ---------------------------------------')
+class GourmetSalad extends Salad{
+
+}
 /*
 let myGourmetSalad = new GourmetSalad()
 .add('Sallad', imported.inventory['Sallad'], 0.5)
@@ -174,3 +188,5 @@ console.log('\n--- Assignment 5 ---------------------------------------')
 /**
  * Reflection question 6
  */
+
+ console.log('\n--- Extra ---------------------------------------------')
