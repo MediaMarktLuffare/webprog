@@ -68,21 +68,17 @@ class Salad {
 
     add(name, properties) {
         if(properties.foundation){
-            if(!this.foundation.length){
-                this.foundation.push(name);
-                console.log('Foundation added: ' + name);
-            } else {
-                console.log('Error: You can not have more than one foundation!');
-            }
+            this.foundation.push(name);
+            //console.log('Foundation added: ' + name);
         } else if(properties.protein){
             this.protein.push(name);
-            console.log('Protein added: ' + name);
+            //console.log('Protein added: ' + name);
         } else if(properties.extra){
             this.extra.push(name);
-            console.log('Extra added: ' + name);
+            //console.log('Extra added: ' + name);
         } else if(properties.dressing){
             this.dressing.push(name);
-            console.log('Dressing added: ' + name);
+            //console.log('Dressing added: ' + name);
         }
         //console.log(name + ' not added!');
     }
@@ -90,16 +86,16 @@ class Salad {
     remove(name) {
         if(this.foundation.indexOf(name) > -1){
             this.foundation.splice(this.foundation.indexOf(name),1);
-            console.log('Foundation removed: ' + name);
+            //console.log('Foundation removed: ' + name);
         } else if(this.protein.indexOf(name) > -1){
             this.protein.splice(this.protein.indexOf(name),1);
-            console.log('Protein removed: ' + name);
+            //console.log('Protein removed: ' + name);
         } else if(this.extra.indexOf(name) > -1){
             this.extra.splice(this.extra.indexOf(name),1);
-            console.log('Extra removed: ' + name);
+            //console.log('Extra removed: ' + name);
         } else if(this.dressing.indexOf(name) > -1){
             this.dressing.splice(this.dressing.indexOf(name),1);
-            console.log('Dressing removed' + name);
+            //console.log('Dressing removed' + name);
         }
         //console.log(name + ' not removed!');
     }
