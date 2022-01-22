@@ -68,6 +68,7 @@ class Salad {
         this.protein = [];
         this.extra = [];
         this.dressing = [];
+        this.uuid = 'salad_' + Salad.instanceCounter++;
     }
 
     add(name, properties) {
@@ -169,15 +170,15 @@ class GourmetSalad extends Salad{
         } else if(properties.extra){
             this.extra.push(name, size);
         } else if(properties.dressing){
-            this.dressing.push(name,size);
-        }
+            this.dressing.push(name, size);
+        } 
         //console.log(name + ' not added!');
     }
 
     getPrice(){
         const inventory = imported.inventory;
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
-        return salad.reduce((accumulator, currentValue) => accumulator + inventory[currentValue].price, 0);
+        return salad.reduce((accumulator, currentValue) => accumulator + inventory[currentValue.name].price * currentValue.size, 0);
     }
 }
 
@@ -189,9 +190,9 @@ myGourmetSalad.add('Krutonger', imported.inventory['Krutonger']);
 myGourmetSalad.add('Parmesan', imported.inventory['Parmesan'], 2);
 myGourmetSalad.add('Ceasardressing', imported.inventory['Ceasardressing']);
 console.log(JSON.stringify(myGourmetSalad) + '\n');
-//console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
-//myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1);
-//console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
+console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
+myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1);
+console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
 
 
 console.log('\n--- Assignment 5 ---------------------------------------')
