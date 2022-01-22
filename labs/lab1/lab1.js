@@ -161,9 +161,9 @@ console.log('\n--- Assignment 4 ---------------------------------------')
 class GourmetSalad extends Salad{
 
     add(name, properties, size = 1) {
+        // size = 1, skall föreställa en portion
         if(properties.foundation){
             this.foundation.push(name, size);
-            console.log('It is added');
         } else if(properties.protein){
             this.protein.push(name, size);
         } else if(properties.extra){
@@ -189,7 +189,7 @@ myGourmetSalad.add('Krutonger', imported.inventory['Krutonger']);
 myGourmetSalad.add('Parmesan', imported.inventory['Parmesan'], 2);
 myGourmetSalad.add('Ceasardressing', imported.inventory['Ceasardressing']);
 console.log(JSON.stringify(myGourmetSalad) + '\n');
-console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
+//console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
 //myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1);
 //console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
 
