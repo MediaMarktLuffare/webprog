@@ -32,7 +32,7 @@ console.log('Not sorted');
 console.log('\n--- Assignment 1 ---------------------------------------')
 
 /*
-console.log(function makeOptions(inventory, selectOption){
+let godHelp = function makeOptions(inventory, selectOption){
     inventory = imported.inventory;
     selectOption = 'foundation'; //onödig?
 
@@ -53,7 +53,10 @@ console.log(function makeOptions(inventory, selectOption){
         ))}
         </select>
     );
-});
+*/
+
+/*
+console.log(function makeOptions(inventory, 'foundation'));
 */
 
 console.log('\n--- Assignment 2 ---------------------------------------')
