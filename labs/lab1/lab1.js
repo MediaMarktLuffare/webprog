@@ -219,33 +219,5 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
 
  console.log('\n--- Extra ---------------------------------------------')
  class Basket {
-    constructor(){
-        this.basket = [];
-    }
-    
-    add(salad){
-        this.basket.push(salad);
-    }
-    
-    remove(salad){
-        this.basket.splice(this.basket.indexOf(salad),1);
-    }
-
-    price(){
-        
-    }
-
-    basketLength(){
-        return this.basket.length;
-    }
  }
-
- let testBasket = new Basket();
-
- testBasket.add(myCaesarSalad);
- testBasket.add(myGourmetSalad);
-
-console.log('Basket size is: ' +  testBasket.basketLength());
-console.log('Remove caesarSalad: ' +  testBasket.remove('myCaesarSalad'));
-console.log('Basket size is: ' +  testBasket.basketLength());
 
