@@ -31,9 +31,30 @@ console.log('Not sorted');
 
 console.log('\n--- Assignment 1 ---------------------------------------')
 
+/*
+console.log(function makeOptions(inventory, selectOption){
+    inventory = imported.inventory;
+    selectOption = 'foundation'; //onödig?
 
-
-//console.log(makeOptions(imported.inventory, 'foundation'));
+    //Bara bas som skall selectas
+    let foundation = Object.keys(inventory).filter(
+        (name) => inventory[name].foundation
+    );
+    return ( 
+        <select
+            id = {} //vad ska man fylla i här?
+            name = "foundation"
+            value = {} //vad ska man fylla i här?
+        >
+        {foundation.map(name =>(
+            <option> 
+            {name} {", "} {inventory[name].price} {"kr"} 
+            </option>
+        ))}
+        </select>
+    );
+});
+*/
 
 console.log('\n--- Assignment 2 ---------------------------------------')
 
@@ -89,7 +110,7 @@ class Salad {
     }
 
     count(property){
-
+        
     }
 }
 
