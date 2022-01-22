@@ -131,7 +131,10 @@ console.log('\n--- Assignment 3 ---------------------------------------')
 //console.log('En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör');
 // En ceasarsallad har 3 tillbehör
 
-// reflection question 3
+/**  reflection question 3
+ * 
+*/
+
 /*
 console.log('typeof Salad: ' + typeof Salad);
 console.log('typeof Salad.prototype: ' + typeof Salad.prototype);
