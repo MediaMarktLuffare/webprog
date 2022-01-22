@@ -108,8 +108,9 @@ class Salad {
     //addera 4 arrays utan for loop? concat stackoverflow, reduce livecodedev
     getPrice(){
         const inventory = imported.inventory;
-        let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
-        return salad.reduce((accumulator, currentValue) => accumulator + inventory[currentValue].price, 0);
+        let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
+        //console.log(Object.values(inventory)[0]); 
+        return salad.reduce((acc, currV) => acc + inventory[currV].price, 0);
     }
 
     //Använde inte ens hint? Vart ska man lägga gränsen?
@@ -161,16 +162,20 @@ console.log('check 2: ' + (Object.prototype === Object.getPrototypeOf(Salad.prot
 console.log('\n--- Assignment 4 ---------------------------------------')
 class GourmetSalad extends Salad{
 
+    constructor() {
+        super();
+      }
+
     add(name, properties, size = 1) {
         // size = 1, skall föreställa en portion
         if(properties.foundation){
-            this.foundation.push(name, size);
+            this.foundation.push({name, size});
         } else if(properties.protein){
-            this.protein.push(name, size);
+            this.protein.push({name, size});
         } else if(properties.extra){
-            this.extra.push(name, size);
+            this.extra.push({name, size});
         } else if(properties.dressing){
-            this.dressing.push(name, size);
+            this.dressing.push({name, size});
         } 
         //console.log(name + ' not added!');
     }
@@ -178,7 +183,8 @@ class GourmetSalad extends Salad{
     getPrice(){
         const inventory = imported.inventory;
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
-        return salad.reduce((accumulator, currentValue) => accumulator + inventory[currentValue].price * currentValue.size, 0);
+        //console.log(Object.values(inventory)[0]); 
+        return salad.reduce((acc, currV) => acc + inventory[currV.name].price * currV.size, 0);
     }
 }
 
@@ -196,7 +202,7 @@ console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
 
 
 console.log('\n--- Assignment 5 ---------------------------------------')
-//console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
+console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
 
 /**
  * Reflection question 4
