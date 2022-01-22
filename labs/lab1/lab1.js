@@ -206,13 +206,46 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
 
 /**
  * Reflection question 4
+ * För det objektet den är skapad i? t.ex. en klass
  */
 /**
  * Reflection question 5
+ * Ja det går om man använder defineProperty
  */
 /**
  * Reflection question 6
+ * Typ men bara genom att köra closures 
  */
 
  console.log('\n--- Extra ---------------------------------------------')
- 
+ class Basket {
+    constructor(){
+        this.basket = [];
+    }
+    
+    add(salad){
+        this.basket.push(salad);
+    }
+    
+    remove(salad){
+        this.basket.splice(this.basket.indexOf(salad),1);
+    }
+
+    price(){
+        
+    }
+
+    basketLength(){
+        return this.basket.length;
+    }
+ }
+
+ let testBasket = new Basket();
+
+ testBasket.add(myCaesarSalad);
+ testBasket.add(myGourmetSalad);
+
+console.log('Basket size is: ' +  testBasket.basketLength());
+console.log('Remove caesarSalad: ' +  testBasket.remove('myCaesarSalad'));
+console.log('Basket size is: ' +  testBasket.basketLength());
+
