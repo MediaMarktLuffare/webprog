@@ -36,7 +36,7 @@ let godHelpMe = function makeOptions(inventory, selectOption){
     inventory = imported.inventory;
     selectOption = 'foundation'; //onödig?
 
-    //Bara bas som skall selectas
+    //Separera foundation från resten
     let foundation = Object.keys(inventory).filter(
         (name) => inventory[name].foundation
     );
@@ -120,6 +120,7 @@ Salad.prototype.getPrice = function(){
     return salad.reduce((acc, currV) => acc + imported.inventory[currV].price, 0);
 };
 
+//Funka inte med Object.values()?? Alt. lösning detta?
 Salad.prototype.count = function (property){
     if(property === 'foundation'){
         return this.foundation.length;
@@ -151,11 +152,10 @@ console.log('check 2: ' + (Object.prototype === Object.getPrototypeOf(Salad.prot
 
 console.log('\n--- Assignment 4 ---------------------------------------')
 class GourmetSalad extends Salad{
-
     constructor() {
         super();
       }
-    
+
     //Samma sak som att köra prototype så skitsamma helt ärligt
     add(name, properties, size = 1) {
         // size = 1 i konstruktorn blir fler annars
@@ -171,12 +171,14 @@ class GourmetSalad extends Salad{
         //console.log(name + ' not added!');
         //this.foundation.forEach(e => console.log(e));
     }
-
+    
+    
     getPrice(){
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
         //console.log(Object.values(inventory)[0]); 
         return salad.reduce((acc, currV) => acc + imported.inventory[currV.name].price * currV.size, 0); //fyll i overleaf
     }
+    
 }
 
 let myGourmetSalad = new GourmetSalad();
