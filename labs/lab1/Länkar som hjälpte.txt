@@ -1,0 +1,5 @@
+Class är en fancy version av prototype: https://stackoverflow.com/questions/55204088/defining-javascript-functions-inside-vs-outside-of-a-class
+myCeasarSalad inte funka: https://stackoverflow.com/questions/14450731/why-is-javascript-prototype-property-undefined-on-new-objects
+concat: https://stackoverflow.com/questions/5080028/what-is-the-most-efficient-way-to-concatenate-n-arrays
+reduce, för imported: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+GourmeSallad: https://stackoverflow.com/questions/34843065/push-array-into-object

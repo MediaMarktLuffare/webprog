@@ -49,7 +49,7 @@ let godHelpMe = function makeOptions(inventory, selectOption){
         >
         {foundation.map(name =>(
             <option> 
-            {name+ ", "+inventory[name].price+"kr"} 
+            {name + ", "+inventory[name].price+"kr"} 
             </option>
         ))}
         </select>
@@ -74,16 +74,12 @@ class Salad {
     add(name, properties) {
         if(properties.foundation){
             this.foundation.push(name);
-            //console.log('Foundation added: ' + name);
         } else if(properties.protein){
             this.protein.push(name);
-            //console.log('Protein added: ' + name);
         } else if(properties.extra){
             this.extra.push(name);
-            //console.log('Extra added: ' + name);
         } else if(properties.dressing){
             this.dressing.push(name);
-            //console.log('Dressing added: ' + name);
         }
         //console.log(name + ' not added!');
     }
@@ -91,40 +87,15 @@ class Salad {
     remove(name) {
         if(this.foundation.indexOf(name) > -1){
             this.foundation.splice(this.foundation.indexOf(name),1);
-            //console.log('Foundation removed: ' + name);
         } else if(this.protein.indexOf(name) > -1){
             this.protein.splice(this.protein.indexOf(name),1);
-            //console.log('Protein removed: ' + name);
         } else if(this.extra.indexOf(name) > -1){
             this.extra.splice(this.extra.indexOf(name),1);
-            //console.log('Extra removed: ' + name);
         } else if(this.dressing.indexOf(name) > -1){
             this.dressing.splice(this.dressing.indexOf(name),1);
-            //console.log('Dressing removed' + name);
         }
         //console.log(name + ' not removed!');
-    }
-
-    //addera 4 arrays utan for loop? concat stackoverflow, reduce livecodedev
-    getPrice(){
-        const inventory = imported.inventory;
-        let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
-        //console.log(Object.values(inventory)[0]); 
-        return salad.reduce((acc, currV) => acc + inventory[currV].price, 0);
-    }
-
-    //Använde inte ens hint? Vart ska man lägga gränsen?
-    count(property){
-        if(property === 'foundation'){
-            return this.foundation.length;
-        } else if(property === 'protein'){
-            return this.protein.length;
-        } else if(property === 'extra'){
-            return this.extra.length;
-        } else if(property === 'dressing'){
-            return this.dressing.length;
-        }
-    }
+    }   
 }
 
 //console.log('Test '+imported.inventory['Sallad'].foundation);
@@ -142,6 +113,25 @@ myCaesarSalad.remove('Gurka');
 console.log(JSON.stringify(myCaesarSalad) + '\n');
 
 console.log('\n--- Assignment 3 ---------------------------------------')
+
+//ev. ha fyra olika reduce? concat stackoverflow, reduce livecodedev
+Salad.prototype.getPrice = function(){
+    let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
+    return salad.reduce((acc, currV) => acc + imported.inventory[currV].price, 0);
+};
+
+Salad.prototype.count = function (property){
+    if(property === 'foundation'){
+        return this.foundation.length;
+    } else if(property === 'protein'){
+        return this.protein.length;
+    } else if(property === 'extra'){
+        return this.extra.length;
+    } else if(property === 'dressing'){
+        return this.dressing.length;
+    }
+};
+
 console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
 // En ceasarsallad kostar 45kr
 console.log('En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör');
@@ -165,11 +155,12 @@ class GourmetSalad extends Salad{
     constructor() {
         super();
       }
-
+    
+    //Samma sak som att köra prototype så skitsamma helt ärligt
     add(name, properties, size = 1) {
-        // size = 1, skall föreställa en portion
+        // size = 1 i konstruktorn blir fler annars
         if(properties.foundation){
-            this.foundation.push({name, size});
+            this.foundation.push({name, size}); //fyll i overleaf
         } else if(properties.protein){
             this.protein.push({name, size});
         } else if(properties.extra){
@@ -178,13 +169,13 @@ class GourmetSalad extends Salad{
             this.dressing.push({name, size});
         } 
         //console.log(name + ' not added!');
+        //this.foundation.forEach(e => console.log(e));
     }
 
     getPrice(){
-        const inventory = imported.inventory;
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
         //console.log(Object.values(inventory)[0]); 
-        return salad.reduce((acc, currV) => acc + inventory[currV.name].price * currV.size, 0);
+        return salad.reduce((acc, currV) => acc + imported.inventory[currV.name].price * currV.size, 0); //fyll i overleaf
     }
 }
 
@@ -195,11 +186,10 @@ myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 0.5);
 myGourmetSalad.add('Krutonger', imported.inventory['Krutonger']);
 myGourmetSalad.add('Parmesan', imported.inventory['Parmesan'], 2);
 myGourmetSalad.add('Ceasardressing', imported.inventory['Ceasardressing']);
-console.log(JSON.stringify(myGourmetSalad) + '\n');
+//console.log(JSON.stringify(myGourmetSalad) + '\n');
 console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
 myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1);
 console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
-
 
 console.log('\n--- Assignment 5 ---------------------------------------')
 console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
@@ -218,6 +208,12 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
  */
 
  console.log('\n--- Extra ---------------------------------------------')
- class Basket {
+ class ShoppingCart {
+     constructor(){
+         this.basket = [];
+     }
+
+
+
  }
 
