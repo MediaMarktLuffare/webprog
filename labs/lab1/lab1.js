@@ -212,9 +212,9 @@ myGourmetSalad.add('Krutonger', imported.inventory['Krutonger']);
 myGourmetSalad.add('Parmesan', imported.inventory['Parmesan'], 2);
 myGourmetSalad.add('Ceasardressing', imported.inventory['Ceasardressing']);
 //console.log(JSON.stringify(myGourmetSalad) + '\n');
-//console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
-//myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1);
-//console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
+console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
+myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1);
+console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
 
 console.log('\n--- Assignment 5 ---------------------------------------')
 console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
@@ -237,5 +237,6 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
     constructor(){
         this.basket = [];
     }
+
  }
 
