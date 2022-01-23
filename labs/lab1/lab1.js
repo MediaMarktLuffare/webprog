@@ -93,26 +93,30 @@ class Salad {
 
     add(name, properties) {
         if(properties.foundation){
-            this.foundation.push(name);
+            return this.foundation.push(name);
+            //return;
         } else if(properties.protein){
-            this.protein.push(name);
+            return this.protein.push(name);
+            //return;
         } else if(properties.extra){
-            this.extra.push(name);
+            return this.extra.push(name);
+            //return;
         } else if(properties.dressing){
-            this.dressing.push(name);
+            return this.dressing.push(name);
+            //return;
         }
         //console.log(name + ' not added!');
     }
 
     remove(name) {
         if(this.foundation.indexOf(name) > -1){
-            this.foundation.splice(this.foundation.indexOf(name),1);
+            return this.foundation.splice(this.foundation.indexOf(name),1);
         } else if(this.protein.indexOf(name) > -1){
-            this.protein.splice(this.protein.indexOf(name),1);
+            return this.protein.splice(this.protein.indexOf(name),1);
         } else if(this.extra.indexOf(name) > -1){
-            this.extra.splice(this.extra.indexOf(name),1);
+            return this.extra.splice(this.extra.indexOf(name),1);
         } else if(this.dressing.indexOf(name) > -1){
-            this.dressing.splice(this.dressing.indexOf(name),1);
+            return this.dressing.splice(this.dressing.indexOf(name),1);
         }
         //console.log(name + ' not removed!');
     }   
@@ -180,18 +184,18 @@ class GourmetSalad extends Salad{
     add(name, properties, size = 1) {
         // size = 1 i konstruktorn, error om man försöker köra med spread.
         if(properties.foundation){
-            this.foundation.push({name, size}); //fyll i overleaf, utan {} ger two arrays och size är ute i luften.
+            return this.foundation.push({name, size}); //fyll i overleaf, utan {} ger two arrays och size är ute i luften.
         } else if(properties.protein){
-            this.protein.push({name, size});
+            return this.protein.push({name, size});
         } else if(properties.extra){
-            this.extra.push({name, size});
+            return this.extra.push({name, size});
         } else if(properties.dressing){
-            this.dressing.push({name, size});
+            return this.dressing.push({name, size});
         } 
         //console.log(name + ' not added!');
         //this.foundation.forEach(e => console.log(e));
     }
-    /*
+    /* Hur fan gör man super efter ens add redan e "fel"
     add(name, properties, size = 1){
         super.add(name,);
     }
