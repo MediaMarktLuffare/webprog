@@ -31,38 +31,58 @@ console.log('Not sorted');
 
 console.log('\n--- Assignment 1 ---------------------------------------')
 
-/*
-let godHelpMe = function makeOptions(inventory, selectOption){
-    inventory = imported.inventory;
-    selectOption = 'foundation'; //onödig?
+function makeOptions(inventory, options){
+    let foundation = Object.keys(inventory).filter((name) => inventory[name].foundation);
+    let protein = Object.keys(inventory).filter((name) => inventory[name].protein);
+    let extra = Object.keys(inventory).filter((name) => inventory[name].extra);
+    let dressing = Object.keys(inventory).filter((name) => inventory[name].dressing);
+    
+    if(options === 'foundation'){
+        console.log('----Foundation----')
+        foundation.map(name => {
+        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
+        });
+        console.log('------------------')
+    }
 
-    //Separera foundation från resten
-    let foundation = Object.keys(inventory).filter(
-        (name) => inventory[name].foundation
-    );
+    if(options === 'protein'){
+        console.log('----Protein----')
+        protein.map(name => {
+        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
+        });
+        console.log('---------------')
+    }
 
-    return ( 
-        <select
-            id = {} //vad ska man fylla i här?
-            name = "foundation"
-            value = {} //vad ska man fylla i här?
-        >
-        {foundation.map(name =>(
-            <option> 
-            {name + ", "+inventory[name].price+"kr"} 
-            </option>
-        ))}
-        </select>
-    );
-*/
+    if(options === 'extra'){
+        console.log('----Extra----')
+        extra.map(name => {
+        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
+        });
+        console.log('-------------')
+    }
 
-/*
-console.log(function makeOptions(inventory, 'foundation'));
-*/
+    if(options === 'dressing'){
+        console.log('----Dressing----')
+        dressing.map(name => {
+        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
+        });
+        console.log('----------------')
+    }
+}
+
+let fillIn = {
+    1 : 'foundation',
+    12 : 'protein',
+    123 : 'extra',
+    1234 : 'dressing'
+};
+
+console.log(makeOptions(imported.inventory, fillIn[1]));
 
 console.log('\n--- Assignment 2 ---------------------------------------')
 
 class Salad {
+    static instanceCounter = 0;
     constructor(){
         this.foundation = [];
         this.protein = [];
@@ -154,13 +174,13 @@ console.log('\n--- Assignment 4 ---------------------------------------')
 class GourmetSalad extends Salad{
     constructor() {
         super();
-      }
+    }
 
     //Samma sak som att köra prototype så skitsamma helt ärligt
     add(name, properties, size = 1) {
-        // size = 1 i konstruktorn blir fler annars
+        // size = 1 i konstruktorn, error om man försöker köra med spread.
         if(properties.foundation){
-            this.foundation.push({name, size}); //fyll i overleaf
+            this.foundation.push({name, size}); //fyll i overleaf, utan {} ger two arrays och size är ute i luften.
         } else if(properties.protein){
             this.protein.push({name, size});
         } else if(properties.extra){
@@ -171,14 +191,17 @@ class GourmetSalad extends Salad{
         //console.log(name + ' not added!');
         //this.foundation.forEach(e => console.log(e));
     }
-    
+    /*
+    add(name, properties, size = 1){
+        super.add(name,);
+    }
+    */
     
     getPrice(){
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
         //console.log(Object.values(inventory)[0]); 
         return salad.reduce((acc, currV) => acc + imported.inventory[currV.name].price * currV.size, 0); //fyll i overleaf
     }
-    
 }
 
 let myGourmetSalad = new GourmetSalad();
@@ -189,9 +212,9 @@ myGourmetSalad.add('Krutonger', imported.inventory['Krutonger']);
 myGourmetSalad.add('Parmesan', imported.inventory['Parmesan'], 2);
 myGourmetSalad.add('Ceasardressing', imported.inventory['Ceasardressing']);
 //console.log(JSON.stringify(myGourmetSalad) + '\n');
-console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
-myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1);
-console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
+//console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
+//myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1);
+//console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
 
 console.log('\n--- Assignment 5 ---------------------------------------')
 console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
@@ -211,11 +234,8 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
 
  console.log('\n--- Extra ---------------------------------------------')
  class ShoppingCart {
-     constructor(){
-         this.basket = [];
-     }
-
-
-
+    constructor(){
+        this.basket = [];
+    }
  }
 
