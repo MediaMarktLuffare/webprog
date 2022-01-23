@@ -9,12 +9,13 @@ const imported = require("./inventory.js"); //CommonJS
 //console.log(imported.inventory['Sallad']);
 //console.log(imported.inventory['Krutonger']);
 
-
+/*
 console.log('Object.keys():');
 let names = Object.keys(imported.inventory);
 names
 .sort((a, b) => a.localeCompare(b, "sv", {sensitivity: 'case'}))
 .forEach(name => console.log(name));
+*/
 
 /*
 console.log('\nObject.keys():');
@@ -93,30 +94,46 @@ class Salad {
 
     add(name, properties) {
         if(properties.foundation){
-            return this.foundation.push(name);
-            //return;
+            this.foundation.push(name); //,{name, ...properties}
+            return;
         } else if(properties.protein){
-            return this.protein.push(name);
-            //return;
+            this.protein.push(name);
+            return;
         } else if(properties.extra){
-            return this.extra.push(name);
-            //return;
+            this.extra.push(name);
+            return;
         } else if(properties.dressing){
-            return this.dressing.push(name);
-            //return;
+            this.dressing.push(name);
+            return;
         }
         //console.log(name + ' not added!');
     }
 
-    remove(name) {
-        if(this.foundation.indexOf(name) > -1){
+    remove(name) { //har man {name, ...properties} så blir det svårt att fixa remove på rätt sätt, det blir fel för protein???
+        
+        console.log('TEST: '+Object.keys(imported.inventory[name]));
+
+        if(this.protein){
+            console.log('Funkar?')
+            this.protein.forEach(e => console.log(e))
+        } else {
+            console.log('Funkar inte')
+        }
+
+        if(this.foundation.indexOf(name) > -1){ //fundation är inte properly defnied därför blir det null
             return this.foundation.splice(this.foundation.indexOf(name),1);
-        } else if(this.protein.indexOf(name) > -1){
+
+        } else if(this.protein.indexOf(name) > -1){ //Proteins är inte properly defnied därför blir det null
             return this.protein.splice(this.protein.indexOf(name),1);
+
         } else if(this.extra.indexOf(name) > -1){
             return this.extra.splice(this.extra.indexOf(name),1);
+
         } else if(this.dressing.indexOf(name) > -1){
             return this.dressing.splice(this.dressing.indexOf(name),1);
+
+        } else {
+            console.log('Ingrediensen finns inte!');
         }
         //console.log(name + ' not removed!');
     }   
@@ -132,9 +149,9 @@ myCaesarSalad.add('Krutonger', imported.inventory['Krutonger']);
 myCaesarSalad.add('Parmesan', imported.inventory['Parmesan']);
 myCaesarSalad.add('Ceasardressing', imported.inventory['Ceasardressing']);
 myCaesarSalad.add('Gurka', imported.inventory['Gurka']);
-console.log(JSON.stringify(myCaesarSalad) + '\n');
+//console.log(JSON.stringify(myCaesarSalad) + '\n');
 myCaesarSalad.remove('Gurka');
-console.log(JSON.stringify(myCaesarSalad) + '\n');
+//console.log(JSON.stringify(myCaesarSalad) + '\n');
 
 console.log('\n--- Assignment 3 ---------------------------------------')
 
@@ -184,13 +201,13 @@ class GourmetSalad extends Salad{
     add(name, properties, size = 1) {
         // size = 1 i konstruktorn, error om man försöker köra med spread.
         if(properties.foundation){
-            return this.foundation.push({name, size}); //fyll i overleaf, utan {} ger two arrays och size är ute i luften.
+            return this.foundation.push({name, ...properties,size}); //fyll i overleaf, utan {} ger two arrays och size är ute i luften.
         } else if(properties.protein){
-            return this.protein.push({name, size});
+            return this.protein.push({name, ...properties, size});
         } else if(properties.extra){
-            return this.extra.push({name, size});
+            return this.extra.push({name, ...properties, size});
         } else if(properties.dressing){
-            return this.dressing.push({name, size});
+            return this.dressing.push({name, ...properties, size});
         } 
         //console.log(name + ' not added!');
         //this.foundation.forEach(e => console.log(e));
@@ -204,7 +221,7 @@ class GourmetSalad extends Salad{
     getPrice(){
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
         //console.log(Object.values(inventory)[0]); 
-        return salad.reduce((acc, currV) => acc + imported.inventory[currV.name].price * currV.size, 0); //fyll i overleaf
+        return salad.reduce((acc, currV) => acc + currV.price * currV.size, 0); //fyll i overleaf
     }
 }
 
