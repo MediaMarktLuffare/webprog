@@ -94,17 +94,13 @@ class Salad {
 
     add(name, properties) {
         if(properties.foundation){
-            this.foundation.push({name, ...properties}); //,{name, ...properties}
-            return;
+            return this.foundation.push({name, ...properties});
         } else if(properties.protein){
-            this.protein.push({name, ...properties});
-            return;
+            return this.protein.push({name, ...properties});
         } else if(properties.extra){
-            this.extra.push({name, ...properties});
-            return;
+            return this.extra.push({name, ...properties});
         } else if(properties.dressing){
-            this.dressing.push({name, ...properties});
-            return;
+            return this.dressing.push({name, ...properties});
         }
         //console.log(name + ' not added!');
     }
@@ -150,7 +146,7 @@ console.log('\n--- Assignment 3 ---------------------------------------')
 //ev. ha fyra olika reduce? concat stackoverflow, reduce livecodedev
 Salad.prototype.getPrice = function(){
     let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
-    return salad.reduce((acc, currV) => acc + currV.price, 0); //lägga till currV.size här också?
+    return salad.reduce((acc, currV) => acc + currV.price, 0); //Error om man försöker ta currV.size här, skapa en egen i gourme
 };
 
 //Funka inte med Object.values()?? Alt. lösning detta?
@@ -248,7 +244,7 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
     }
 
     price(){
-        return this.basket.reduce((acc, currV) => acc += currV.getPrice(), 0); //hur fixar man getPrice() i salad?
+        return this.basket.reduce((acc, currV) => acc += currV.getPrice(), 0);
     }
 
     size(){
