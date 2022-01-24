@@ -150,7 +150,7 @@ console.log('\n--- Assignment 3 ---------------------------------------')
 //ev. ha fyra olika reduce? concat stackoverflow, reduce livecodedev
 Salad.prototype.getPrice = function(){
     let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
-    return salad.reduce((acc, currV) => acc + currV.price, 0);
+    return salad.reduce((acc, currV) => acc + currV.price, 0); //lägga till currV.size här också?
 };
 
 //Funka inte med Object.values()?? Alt. lösning detta?
@@ -193,6 +193,7 @@ class GourmetSalad extends Salad{
         super.add(name,{...properties, size});
     }
     
+    //Super på denna också?
     getPrice(){
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
         return salad.reduce((acc, currV) => acc + currV.price * currV.size, 0);
@@ -233,5 +234,32 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
         this.basket = [];
     }
 
+    add(salad){
+        this.basket.push(salad)
+    }
+
+    remove(salad){
+        if(!this.basket.length){
+            console.log('Korgen är tom!');
+            return;
+        } else {
+            return this.basket.splice(this.basket.findIndex(e=> e.salad === salad),1);
+        }
+    }
+
+    price(){
+        return this.basket.reduce((acc, currV) => acc += currV.getPrice(), 0); //hur fixar man getPrice() i salad?
+    }
+
+    size(){
+        return this.basket.length;
+    }
  }
 
+ let basketTest = new ShoppingCart();
+ basketTest.add(myCaesarSalad);
+ basketTest.add(myGourmetSalad);
+ console.log('Antal grejer i korgen:' + basketTest.size());
+ basketTest.remove(myGourmetSalad);
+ console.log('Antal grejer i korgen:' + basketTest.size());
+ console.log('Korgens pris: '+ basketTest.price());
