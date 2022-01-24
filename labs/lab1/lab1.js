@@ -94,47 +94,39 @@ class Salad {
 
     add(name, properties) {
         if(properties.foundation){
-            this.foundation.push(name); //,{name, ...properties}
+            this.foundation.push({name, ...properties}); //,{name, ...properties}
             return;
         } else if(properties.protein){
-            this.protein.push(name);
+            this.protein.push({name, ...properties});
             return;
         } else if(properties.extra){
-            this.extra.push(name);
+            this.extra.push({name, ...properties});
             return;
         } else if(properties.dressing){
-            this.dressing.push(name);
+            this.dressing.push({name, ...properties});
             return;
         }
         //console.log(name + ' not added!');
     }
 
-    remove(name) { //har man {name, ...properties} så blir det svårt att fixa remove på rätt sätt, det blir fel för protein???
-        
-        console.log('TEST: '+Object.keys(imported.inventory[name]));
-
-        if(this.protein){
-            console.log('Funkar?')
-            this.protein.forEach(e => console.log(e))
-        } else {
-            console.log('Funkar inte')
-        }
-
-        if(this.foundation.indexOf(name) > -1){ //fundation är inte properly defnied därför blir det null
-            return this.foundation.splice(this.foundation.indexOf(name),1);
-
-        } else if(this.protein.indexOf(name) > -1){ //Proteins är inte properly defnied därför blir det null
-            return this.protein.splice(this.protein.indexOf(name),1);
-
-        } else if(this.extra.indexOf(name) > -1){
-            return this.extra.splice(this.extra.indexOf(name),1);
-
-        } else if(this.dressing.indexOf(name) > -1){
-            return this.dressing.splice(this.dressing.indexOf(name),1);
-
-        } else {
-            console.log('Ingrediensen finns inte!');
-        }
+    remove(name) { //Stack
+        if(this.foundation.findIndex(e => e.name === name) > -1){ 
+            //
+            return this.foundation.splice(this.foundation.findIndex(e => e.name === name),1);
+            //
+        } else if(this.protein.findIndex(e => e.name === name) > -1){ 
+            //
+            return this.protein.splice(this.protein.findIndex(e => e.name === name),1);
+            //
+        } else if(this.extra.findIndex(e => e.name === name) > -1){
+            //
+            return this.extra.splice(this.extra.findIndex(e => e.name === name),1);
+            //
+        } else if(this.dressing.findIndex(e => e.name === name) > -1){
+            //
+            return this.dressing.splice(this.dressing.findIndex(e => e.name === name),1);
+            //
+        } 
         //console.log(name + ' not removed!');
     }   
 }
@@ -158,7 +150,7 @@ console.log('\n--- Assignment 3 ---------------------------------------')
 //ev. ha fyra olika reduce? concat stackoverflow, reduce livecodedev
 Salad.prototype.getPrice = function(){
     let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
-    return salad.reduce((acc, currV) => acc + imported.inventory[currV].price, 0);
+    return salad.reduce((acc, currV) => acc + currV.price, 0);
 };
 
 //Funka inte med Object.values()?? Alt. lösning detta?
@@ -197,31 +189,13 @@ class GourmetSalad extends Salad{
         super();
     }
 
-    //Samma sak som att köra prototype så skitsamma helt ärligt
-    add(name, properties, size = 1) {
-        // size = 1 i konstruktorn, error om man försöker köra med spread.
-        if(properties.foundation){
-            return this.foundation.push({name, ...properties,size}); //fyll i overleaf, utan {} ger two arrays och size är ute i luften.
-        } else if(properties.protein){
-            return this.protein.push({name, ...properties, size});
-        } else if(properties.extra){
-            return this.extra.push({name, ...properties, size});
-        } else if(properties.dressing){
-            return this.dressing.push({name, ...properties, size});
-        } 
-        //console.log(name + ' not added!');
-        //this.foundation.forEach(e => console.log(e));
-    }
-    /* Hur fan gör man super efter ens add redan e "fel"
     add(name, properties, size = 1){
-        super.add(name,);
+        super.add(name,{...properties, size});
     }
-    */
     
     getPrice(){
         let salad = this.foundation.concat(this.protein, this.extra, this.dressing); 
-        //console.log(Object.values(inventory)[0]); 
-        return salad.reduce((acc, currV) => acc + currV.price * currV.size, 0); //fyll i overleaf
+        return salad.reduce((acc, currV) => acc + currV.price * currV.size, 0);
     }
 }
 

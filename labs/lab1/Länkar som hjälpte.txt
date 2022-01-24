@@ -4,3 +4,4 @@ concat: https://stackoverflow.com/questions/5080028/what-is-the-most-efficient-w
 reduce, för imported: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
 funka inte med spread sa size va undefined: https://stackoverflow.com/questions/40655259/es6-constructor-object-param-default-values
 GourmeSallad push/price: https://stackoverflow.com/questions/34843065/push-array-into-object
+Olika indexOf : https://stackoverflow.com/questions/37385299/filter-and-delete-filtered-elements-in-an-array
