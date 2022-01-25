@@ -5,3 +5,4 @@ reduce, för imported: https://developer.mozilla.org/en-US/docs/Web/JavaScript/R
 funka inte med spread sa size va undefined: https://stackoverflow.com/questions/40655259/es6-constructor-object-param-default-values
 GourmeSallad push/price: https://stackoverflow.com/questions/34843065/push-array-into-object
 Olika indexOf : https://stackoverflow.com/questions/37385299/filter-and-delete-filtered-elements-in-an-array
+Push object into array: https://stackoverflow.com/questions/40250139/push-object-into-array
