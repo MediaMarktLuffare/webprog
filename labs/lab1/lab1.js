@@ -150,15 +150,14 @@ console.log('\n--- Assignment 3 ---------------------------------------')
 
 //ev. ha fyra olika reduce? concat stackoverflow, reduce livecodedev
 Salad.prototype.getPrice = function(){
-    //let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
     return Object.keys(this.salad).reduce((acc, currV) => acc + this.salad[currV].price,0);
+    //let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
     //return this.salad.reduce((acc, currV) => acc + imported.inventory[currV].price, 0); //Error om man försöker ta currV.size här, skapa en egen i gourme
 };
 
 //Funka inte med Object.values()??  
 Salad.prototype.count = function (property){
-    console.log('Test: ' + Object.values(Object.keys(this.salad).filter(x => this.salad[x].property)) + ' Property är:' + property);
-    return Object.values(Object.keys(this.salad).filter(x => this.salad[x].extra));
+    return Object.values(this.salad).reduce((acc, currV) => acc + (currV[property] ? 1 : 0),0); //stack 
     /*
     if(property === 'foundation'){
         return this.foundation.length;

@@ -6,3 +6,4 @@ funka inte med spread sa size va undefined: https://stackoverflow.com/questions/
 GourmeSallad push/price: https://stackoverflow.com/questions/34843065/push-array-into-object
 Olika indexOf : https://stackoverflow.com/questions/37385299/filter-and-delete-filtered-elements-in-an-array
 Push object into array: https://stackoverflow.com/questions/40250139/push-object-into-array
+"if-statser" i reduce: https://stackoverflow.com/questions/45204270/how-to-use-array-reduce-with-condition-in-javascript
