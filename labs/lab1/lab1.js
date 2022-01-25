@@ -34,6 +34,20 @@ console.log('Not sorted');
 
 console.log('\n--- Assignment 1 ---------------------------------------')
 
+/* Gick o lösa så här också men det är lite väl klumpigt.
+function makeOptions(inventory, options){
+    let foundation = Object.keys(inventory).filter((name) => inventory[name].foundation);
+
+    if(options === 'foundation'){
+        console.log('----Foundation----')
+        foundation.map(name => {
+        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
+        });
+        console.log('------------------')
+    }
+*/
+
+
 function makeOptions(inventory, options){
     /* Kan göras separat eller som nedsåtende.
     let foundation = Object.keys(inventory).filter(name => inventory[name].foundation);
@@ -59,12 +73,16 @@ class Salad {
         this.extra = [];
         this.dressing = [];
         */
+        /*
+        * Use one (this.salad) or more object (ovan) as maps to store the ingrediens, same principle as in inventory. 
+        */
+
         this.salad = {}; // Testa sen efter
         this.uuid = 'salad_' + Salad.instanceCounter++;
     }
 
     add(name, properties) {
-        /*
+        /* fuck me, thought i was smart.
         if(properties.foundation){
             return this.foundation.push({name, ...properties});
         } else if(properties.protein){
@@ -81,7 +99,8 @@ class Salad {
 
     remove(name) { //Stack
         return delete this.salad[name];
-        /*
+
+        /* One would need to have a looooot of if cases
         if(this.foundation.findIndex(e => e.name === name) > -1){ 
             return this.foundation.splice(this.foundation.findIndex(e => e.name === name),1);
         } else if(this.protein.findIndex(e => e.name === name) > -1){ 
@@ -115,14 +134,17 @@ console.log('\n--- Assignment 3 ---------------------------------------')
 //ev. ha fyra olika reduce? concat stackoverflow, reduce livecodedev
 Salad.prototype.getPrice = function(){
     return Object.keys(this.salad).reduce((acc, currV) => acc + this.salad[currV].price,0);
+    
+    //Not as the teacher intended
     //let salad = this.foundation.concat(this.protein, this.extra, this.dressing);
-    //return this.salad.reduce((acc, currV) => acc + imported.inventory[currV].price, 0); //Error om man försöker ta currV.size här, skapa en egen i gourme
+    //return this.salad.reduce((acc, currV) => acc + imported.inventory[currV].price, 0);
 };
 
 //Funka inte med Object.values()??  
 Salad.prototype.count = function (property){
     return Object.values(Object.keys(this.salad).filter(name => this.salad[name][property])).length;
-    /*
+
+    /* Old, and not intended as the teacher wanted.
     if(property === 'foundation'){
         return this.foundation.length;
     } else if(property === 'protein'){
@@ -159,7 +181,8 @@ class GourmetSalad extends Salad{
     }
 
     add(name, properties, size = 1){
-        super.add(name,{...properties, size}); //Vi skriver bara över värdet, vi adderar inte, viktigt att skicka in en kopia
+        //oavsett hur jag löser får samma 55kr, verkar inte ha något betydelse.
+        super.add(name,{...properties,size}); //Vi skriver bara över värdet, vi adderar inte, viktigt att skicka in en kopia
         return this;
     }
     
