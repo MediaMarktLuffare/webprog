@@ -35,54 +35,18 @@ console.log('Not sorted');
 console.log('\n--- Assignment 1 ---------------------------------------')
 
 function makeOptions(inventory, options){
-    let foundation = Object.keys(inventory).filter((name) => inventory[name].foundation);
-    let protein = Object.keys(inventory).filter((name) => inventory[name].protein);
-    let extra = Object.keys(inventory).filter((name) => inventory[name].extra);
-    let dressing = Object.keys(inventory).filter((name) => inventory[name].dressing);
-    
-
-    if(options === 'foundation'){
-        console.log('----Foundation----')
-        foundation.map(name => {
-        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
-        });
-        console.log('------------------')
-    }
-
-    if(options === 'protein'){
-        console.log('----Protein----')
-        protein.map(name => {
-        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
-        });
-        console.log('---------------')
-    }
-
-    if(options === 'extra'){
-        console.log('----Extra----')
-        extra.map(name => {
-        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
-        });
-        console.log('-------------')
-    }
-
-    if(options === 'dressing'){
-        console.log('----Dressing----')
-        dressing.map(name => {
-        console.log('<option value='+name+'> '+name+', '+inventory[name].price+' kr<option>');
-        });
-        console.log('----------------')
-    }
-    
+    /* Kan göras separat eller som nedsåtende.
+    let foundation = Object.keys(inventory).filter(name => inventory[name].foundation);
+    return foundation.map(
+        name => '<option value='+name+'/> '+name+', '+inventory[name].price+'kr</option>'
+    );
+    */
+    return Object.keys(inventory).filter(name => inventory[name][options]).map(
+        name => '<option value='+name+'/> '+name+', '+inventory[name].price+'kr</option>'
+    );
 }
 
-let fillIn = {
-    1 : 'foundation',
-    12 : 'protein',
-    123 : 'extra',
-    1234 : 'dressing'
-};
-
-console.log(makeOptions(imported.inventory, fillIn[1]));
+console.log(makeOptions(imported.inventory, 'foundation'));
 
 console.log('\n--- Assignment 2 ---------------------------------------')
 
@@ -157,7 +121,7 @@ Salad.prototype.getPrice = function(){
 
 //Funka inte med Object.values()??  
 Salad.prototype.count = function (property){
-    return Object.values(this.salad).reduce((acc, currV) => acc + (currV[property] ? 1 : 0),0); //stack 
+    return Object.values(Object.keys(this.salad).filter(name => this.salad[name][property])).length;
     /*
     if(property === 'foundation'){
         return this.foundation.length;
@@ -202,7 +166,6 @@ class GourmetSalad extends Salad{
     getPrice(){
         return Object.keys(this.salad).reduce((acc, currV) => acc + (this.salad[currV].price * this.salad[currV].size),0);
     }
-    
 }
 
 let myGourmetSalad = new GourmetSalad();
