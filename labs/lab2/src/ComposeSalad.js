@@ -7,13 +7,22 @@ class ComposeSalad extends Component {
     super(props);
     this.state = {foundation : '', protein : '', extra : {}, dressing : ''};
 
-    this.handleCallback  = this.handleCallback.bind(this);
+    this.handleCallBackSelected  = this.handleCallBackSelected.bind(this);
+    this.handleCallBackExtras = this.handleCallBackExtras(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleCallback(propertyPicked, selectValue) {
-    const currentProperty = this.state;
-    this.setState({a : selectValue});
+  handleCallBackSelected(propertyPicked, selectValue) {
+    //lösa på ett bättre sätt? tänk om inv ändras?
+    //if(propertyPicked === 'foundation') this.setState({foundation : selectValue});
+    //Stack
+    let copyState = this.state; //shallow copy
+    copyState[propertyPicked] = selectValue; // place value 
+    this.setState(copyState); //update state
+  }
+
+  handleCallBackExtras(){
+    
   }
 
   handleSubmit(event){
@@ -23,16 +32,20 @@ class ComposeSalad extends Component {
 
   render() {
     return (
-      <div className="container col-12">
-        <div className="row h-200 p-5 bg-light border rounded-3">
-            <SaladSelect property = {'foundation'} parentCallback={this.handleCallback}/> 
-            <p></p>
-            <SaladSelect property = {'protein'} parentCallback={this.handleCallback}/> 
-            <p></p>
-            <h4>Extra skalla ligga här</h4>
-            <p></p>
-            <SaladSelect property = {'dressing'} parentCallback={this.handleCallback}/> 
-        </div>
+    <div className="container col-12">
+      <div className="row h-200 p-5 bg-light border rounded-3">
+        <SaladSelect property = {'foundation'} parentCallback = {this.handleCallBackSelected}/> 
+        <p></p>
+        <SaladSelect property = {'protein'} parentCallback = {this.handleCallBackSelected}/> 
+        <p></p>
+        <h4>Extra skalla ligga här</h4>
+        <p></p>
+        <SaladSelect property = {'dressing'} parentCallback = {this.handleCallBackSelected}/> 
+        <p></p>
+        <form onSubmit = {this.handleSubmit}>
+          <input type="submit" value="Submit"/>
+        </form>
+      </div>
     </div>
     );
   }
