@@ -26,6 +26,5 @@ class SaladSelect extends Component {
             </div>
         );
     }
-
 }
 export default SaladSelect;

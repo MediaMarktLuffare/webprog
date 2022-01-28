@@ -7,13 +7,13 @@ class ComposeSalad extends Component {
     super(props);
     this.state = {foundation : '', protein : '', extra : {}, dressing : ''};
 
-    this.handleChangeF = this.handleChangeF.bind(this);
-    this.handleCallBack = this.handleCallBack(this);
+    this.handleCallback  = this.handleCallback.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeF(event){
-    this.setState({foundation: event.target.value});
+  handleCallback(propertyPicked, selectValue) {
+    const currentProperty = this.state;
+    this.setState({a : selectValue});
   }
 
   handleSubmit(event){
@@ -21,26 +21,18 @@ class ComposeSalad extends Component {
     this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
   }
 
-  handleCallBack(property){
-    
-  }
-
   render() {
     return (
-      <div className="continer col-12">
-      <div className="row h-200 p-5 bg-light border rounded-3">
-        <h2>Bygg din sallad</h2>
-        <select name = 'foundation' onChange = {this.handleChangeF}>
-        {Object.keys(inventory).filter(name => inventory[name].foundation)
-        .map(name => 
-        <option key = {name} value = {name}> {name + ', ' + inventory[name].price} kr</option>
-        )}
-        </select>  
-        <p></p>
-        <SaladSelect property = {'foundation'} onChange = {this.handleCallBack}/>
-        <p></p>
-        <SaladSelect property = {'protein'} onChange = {this.handleCallBack}/>    
-      </div>
+      <div className="container col-12">
+        <div className="row h-200 p-5 bg-light border rounded-3">
+            <SaladSelect property = {'foundation'} parentCallback={this.handleCallback}/> 
+            <p></p>
+            <SaladSelect property = {'protein'} parentCallback={this.handleCallback}/> 
+            <p></p>
+            <h4>Extra skalla ligga här</h4>
+            <p></p>
+            <SaladSelect property = {'dressing'} parentCallback={this.handleCallback}/> 
+        </div>
     </div>
     );
   }
