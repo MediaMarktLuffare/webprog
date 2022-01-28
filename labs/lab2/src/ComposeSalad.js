@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import SaladSelect from './SaladSelect';
+import SaladCheckBox from './SaladCheckBox';
 import inventory from './inventory.ES6';
 
 class ComposeSalad extends Component {
@@ -22,7 +23,7 @@ class ComposeSalad extends Component {
   }
 
   handleCallBackExtras(){
-    
+
   }
 
   handleSubmit(event){
@@ -38,7 +39,7 @@ class ComposeSalad extends Component {
         <p></p>
         <SaladSelect property = {'protein'} parentCallback = {this.handleCallBackSelected}/> 
         <p></p>
-        <h4>Extra skalla ligga här</h4>
+        <SaladCheckBox property = {'extra'} />
         <p></p>
         <SaladSelect property = {'dressing'} parentCallback = {this.handleCallBackSelected}/> 
         <p></p>
