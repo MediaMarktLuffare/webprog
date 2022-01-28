@@ -118,11 +118,11 @@ class Salad {
 //console.log('Test '+imported.inventory['Sallad'].foundation);
 
 let myCaesarSalad = new Salad();
-myCaesarSalad.add('Sallad', imported.inventory['Sallad']);
+myCaesarSalad.add('Sallad', imported.inventory['Sallad']); //vegan
 myCaesarSalad.add('Kycklingfilé', imported.inventory['Kycklingfilé']);
 myCaesarSalad.add('Bacon', imported.inventory['Bacon']);
 myCaesarSalad.add('Krutonger', imported.inventory['Krutonger']);
-myCaesarSalad.add('Parmesan', imported.inventory['Parmesan']);
+myCaesarSalad.add('Parmesan', imported.inventory['Parmesan']); //lactos
 myCaesarSalad.add('Ceasardressing', imported.inventory['Ceasardressing']);
 myCaesarSalad.add('Gurka', imported.inventory['Gurka']);
 console.log(JSON.stringify(myCaesarSalad) + '\n');
