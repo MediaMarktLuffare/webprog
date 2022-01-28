@@ -35,10 +35,12 @@ class ComposeSalad extends Component {
         .map(name => 
         <option key = {name} value = {name}> {name + ', ' + inventory[name].price} kr</option>
         )}
-        </select>        
+        </select>  
+        <p></p>
+        <SaladSelect property = {'foundation'} onChange = {this.handleCallBack}/>
+        <p></p>
+        <SaladSelect property = {'protein'} onChange = {this.handleCallBack}/>    
       </div>
-      <SaladSelect property = {'foundation'} onChange = {this.handleCallBack}/>
-      <SaladSelect property = {'protein'} onChange = {this.handleCallBack}/>
     </div>
     );
   }
