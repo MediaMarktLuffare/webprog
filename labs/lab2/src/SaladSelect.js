@@ -8,7 +8,7 @@ class SaladSelect extends Component {
                 <div className="form-group">
                     <h4>Välj {this.props.property}</h4>
                     <select
-                        onChange={this.props.handleChange}
+                        onChange={}
                     >
                         <option value="">---Välj en {this.props.property}---</option>
                         {Object.keys(inventory).filter(name =>
