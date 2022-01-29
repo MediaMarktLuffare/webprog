@@ -30,13 +30,13 @@ class ComposeSalad extends Component {
     return (
     <div className="container col-12">
       <div className="row h-200 p-5 bg-light border rounded-3">
-        <SaladSelect property={'foundation'} handleChange={this.handleSelect}/> 
+        <SaladSelect property={'foundation'} /> 
         <p></p>
-        <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
+        <SaladSelect property={'protein'} />
         <p></p>
-        <SaladCheckBox property={'extra'}  handleChange={this.handleExtra}/>
+        <SaladCheckBox property={'extra'}  />
         <p></p>
-        <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
+        <SaladSelect property={'dressing'} />
         <p></p>
         </div>
     </div>
