@@ -9,17 +9,16 @@ class SaladCheckBox extends Component {
                     <h4>Välj {this.props.property}</h4>
                     {Object.keys(inventory).filter(name => inventory[name][this.props.property])
                     .map(name =>
-                        <div key={name}>
+                        <div key={name} className="form-check form-check-inline col-md-3">
                             <input
+                                className="form-check-input"
                                 type='checkbox'
                                 name={this.props.property}
                                 value={name}
-                                
-                                
                             />
-                            <label>
-                                {name +', '+inventory[name].price+' kr'}
-                            </label>                                               
+                            <label className="form-check-label">
+                                {name}
+                            </label>                                             
                         </div>
                     )}
                 </div>

@@ -30,6 +30,8 @@ class ComposeSalad extends Component {
     return (
     <div className="container col-12">
       <div className="row h-200 p-5 bg-light border rounded-3">
+        <h1>Välj innehållet i din sallad</h1>
+        <p></p>
         <SaladSelect property={'foundation'} /> 
         <p></p>
         <SaladSelect property={'protein'} />
