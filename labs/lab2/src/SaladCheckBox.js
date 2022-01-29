@@ -11,7 +11,7 @@ class SaladCheckBox extends Component {
 
     handleChange(event){
         console.log(this.props.property+' '+ event.target.name +' Är intryckt '+event.target.checked);
-        this.props.parentCallback(this.props.property, event.target.name);
+        
     }
 
     render(){

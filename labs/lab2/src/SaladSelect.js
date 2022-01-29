@@ -10,7 +10,7 @@ class SaladSelect extends Component {
     }
 
     handleChange(event){
-        
+        this.props.parentCallback(this.props.property, event.target.value);
     }
 
     render(){
