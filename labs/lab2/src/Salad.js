@@ -2,7 +2,7 @@ class Salad {
     static instanceCounter = 0;
     constructor() {
         this.salad = {}
-        //instanceCounter sen
+        this.uuid;
     }
 
     add(name, properties) {

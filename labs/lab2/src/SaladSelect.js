@@ -10,20 +10,26 @@ class SaladSelect extends Component {
     }
 
     handleChange(event){
-        this.props.parentCallback(this.props.property, event.target.value);
+        
     }
 
     render(){
         return(
-            <div>
-                <h4>Välj {this.props.property}</h4>
-                <select value ={this.state.value} onChange = {this.handleChange}>
-                {Object.keys(inventory).filter(name => inventory[name][this.props.property])
-                .map(name => 
-                <option key = {name} value = {name}> {name + ', ' + inventory[name].price} kr</option>
-                )}
-                </select>
-            </div>
+            <form>
+                <div>
+                    <h4>Välj {this.props.property}</h4>
+                    <select 
+                        value ={this.state.value} 
+                        onChange = {this.handleChange}
+                    >
+                        {Object.keys(inventory).filter(name => inventory[name][this.props.property])
+                        .map(name => 
+                        <option key = {name} value = {name}> {name + ', ' + inventory[name].price} kr</option>
+                        )}
+                    </select>
+                </div>
+            </form>
+            
         );
     }
 }

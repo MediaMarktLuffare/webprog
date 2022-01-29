@@ -10,26 +10,29 @@ class SaladCheckBox extends Component {
     }
 
     handleChange(event){
-        this.props.parentCallback(event.target.name);
+        console.log(this.props.property+' '+ event.target.name +' Är intryckt '+event.target.checked);
+        this.props.parentCallback(this.props.property, event.target.name);
     }
 
     render(){
         return(
-        <div>
-            {Object.keys(inventory).filter(name => inventory[name][this.props.property])
-            .map(name => 
-                <div key = {name}>
-                    <input
-                        type = "checkbox"
-                        name = {name}
-                        onChange = {this.handleChange}
-                />
-                <label key = {name} value = {name}>{name + ', ' + inventory[name].price +' kr'} </label>
+            <form>
+                <div>
+                    <h4>Välj {this.props.property}</h4>
+                    {Object.keys(inventory).filter(name => inventory[name][this.props.property])
+                    .map(name => 
+                    <div key={name}>
+                        <input 
+                        type="checkbox"   
+                        name={name} 
+                        onChange={this.handleChange}
+                        /> 
+                        {name + ', ' + inventory[name].price +' kr'}
+                    </div>
+                    )}
                 </div>
-            )}
-        </div>
+            </form>
         );
     }
-
 }
 export default SaladCheckBox;

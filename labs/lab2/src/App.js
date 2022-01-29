@@ -13,7 +13,7 @@ function App() {
       <span className="fs-4">Sallads Bar</span>
     </header>
 
-    <ComposeSalad inventory={inventory} />
+    <ComposeSalad inventory={inventory}/>
     
     <footer className="pt-3 mt-4 text-muted border-top">
       EDAF90 - webprogrammering

@@ -1,3 +1,4 @@
 copy states: https://stackoverflow.com/questions/29537299/react-how-to-update-state-item1-in-state-using-setstate
 check boxes: https://www.freecodecamp.org/news/how-to-work-with-multiple-checkboxes-in-react/
 Uppdatera parent för checkboxes? https://stackoverflow.com/questions/59832895/how-to-format-the-value-of-a-checkbox-field-using-react-final-form-field-array
+Keys for select options bra för att hålla koll på alla values selected: https://reactjs.org/docs/lists-and-keys.html#keys
