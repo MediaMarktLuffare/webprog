@@ -20,15 +20,17 @@ class SaladCheckBox extends Component {
                 <div>
                     <h4>Välj {this.props.property}</h4>
                     {Object.keys(inventory).filter(name => inventory[name][this.props.property])
-                    .map(name => 
-                    <div key={name}>
-                        <input 
-                        type="checkbox"   
-                        name={name} 
-                        onChange={this.handleChange}
-                        /> 
-                        {name + ', ' + inventory[name].price +' kr'}
-                    </div>
+                    .map(name =>
+                        <div key={name}>
+                            <input
+                                type='checkbox'
+                                name={name}
+                                value={name}
+                                onChange={this.handleChange}
+                            >
+                            </input>
+                            {name +', '+inventory[name].price+' kr'}                                               
+                        </div>
                     )}
                 </div>
             </form>

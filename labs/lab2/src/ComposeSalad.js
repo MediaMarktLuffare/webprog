@@ -15,11 +15,11 @@ class ComposeSalad extends Component {
 
   handleCallBackSelected(propertyPicked, selectValue) {
     //lösa på ett bättre sätt? tänk om inv ändras?
-    //if(propertyPicked === 'foundation') this.setState({foundation : selectValue});
+    //if(propertyPicked === 'protein') this.setState({foundation : selectValue});
     //Stack & React
-    let copyState = this.state; //Gör alltid en kopia
-    copyState[propertyPicked] = selectValue; //Lägg in det värdet vi vill uppdatera state med 
-    this.setState(copyState); //Updatera state
+    let copyState = this.state;
+    copyState[propertyPicked] = selectValue;
+    this.setState(copyState);
   }
 
   handleCallBackExtras(){
@@ -37,11 +37,11 @@ class ComposeSalad extends Component {
       <div className="row h-200 p-5 bg-light border rounded-3">
         <SaladSelect property={'foundation'} parentCallback={this.handleCallBackSelected} /> 
         <p></p>
-        <SaladSelect property={'protein'} parentCallback={this.handleCallBackSelected} /> 
+        <SaladSelect property={'protein'} parentCallback={this.handleCallBackSelected} />
         <p></p>
-        <SaladCheckBox property={'extra'} parentCallback={this.handleCallBackExtras}/>
+        <SaladCheckBox property={'extra'}  />
         <p></p>
-        <SaladSelect property={'dressing'} parentCallback={this.handleCallBackSelected} /> 
+        <SaladSelect property={'dressing'} parentCallback={this.handleCallBackSelected} />
         <p></p>
         </div>
     </div>
