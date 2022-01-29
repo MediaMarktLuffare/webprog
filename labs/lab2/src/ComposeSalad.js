@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import SaladSelect from './SaladSelect';
-import SaladCheckBox from './SaladCheckBox';
+import SaladCheckbox from './SaladCheckbox';
 import inventory from './inventory.ES6';
 
 class ComposeSalad extends Component {
@@ -47,7 +47,7 @@ class ComposeSalad extends Component {
         <p></p>
         <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
         <p></p>
-        <SaladCheckBox property={'extra'} handleChange={this.handleExtra}/>
+        <SaladCheckbox property={'extra'} handleChange={this.handleExtra}/>
         <p></p>
         <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
         <p></p>
