@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import SaladSelect from './SaladSelect';
 import SaladCheckBox from './SaladCheckBox';
+import inventory from './inventory.ES6';
 
 class ComposeSalad extends Component {
   constructor(props) {
@@ -13,15 +14,21 @@ class ComposeSalad extends Component {
   }
 
   handleSelect(event) {
-    let copyState = this.state;
-    copyState[event.target.name] = event.target.value;
-    this.setState(copyState);
+    //console.log(event.target.name + ' har '+ event.target.value);
+    //ECMA2015  t.ex. foundation          sallad
+    this.setState({[event.target.name] : event.target.value});
   }
 
   handleExtra(event){
-    console.log(event.target.name+' '+event.target.value+' Vald, intryckt: '+event.target.checked);
-    let copyState = this.state;
-    
+    //console.log(event.target.value+' '+event.target.name+' Vald, intryckt: '+event.target.checked);
+    let copyState = {...this.state[event.target.value]}; //kopiering av hela blir knas
+    //ändra i state, ta aldrig bort något.
+    if(event.target.checked){
+      copyState[event.target.name] = true;
+    } else {
+      copyState[event.target.name] = false;
+    }
+    this.setState({[event.target.value] : copyState});
   }
 
   handleSubmit(event){
@@ -40,7 +47,7 @@ class ComposeSalad extends Component {
         <p></p>
         <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
         <p></p>
-        <SaladCheckBox property={'extra'}  handleChange={this.handleExtra}/>
+        <SaladCheckBox property={'extra'} handleChange={this.handleExtra}/>
         <p></p>
         <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
         <p></p>

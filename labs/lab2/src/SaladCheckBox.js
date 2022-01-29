@@ -13,8 +13,8 @@ class SaladCheckBox extends Component {
                             <input
                                 className="form-check-input"
                                 type='checkbox'
-                                name={this.props.property}
-                                value={name}
+                                value={this.props.property}
+                                name={name}
                                 onChange={this.props.handleChange}
                             />
                             <label className="form-check-label">
