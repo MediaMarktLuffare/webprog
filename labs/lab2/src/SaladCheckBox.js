@@ -2,18 +2,6 @@ import { Component } from 'react';
 import inventory from './inventory.ES6';
 
 class SaladCheckBox extends Component {
-    constructor(props){
-        super(props);
-        this.state = {};
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(event){
-        console.log(this.props.property+' '+ event.target.name +' Är intryckt '+event.target.checked);
-        
-    }
-
     render(){
         return(
             <form>
@@ -25,11 +13,11 @@ class SaladCheckBox extends Component {
                             <input
                                 type='checkbox'
                                 name={name}
-                                value={name}
                                 onChange={this.handleChange}
-                            >
-                            </input>
-                            {name +', '+inventory[name].price+' kr'}                                               
+                            />
+                            <label>
+                                {name +', '+inventory[name].price+' kr'}
+                            </label>                                               
                         </div>
                     )}
                 </div>
