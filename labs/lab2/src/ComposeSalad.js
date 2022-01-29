@@ -12,11 +12,15 @@ class ComposeSalad extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSelect() {
-    
+  handleSelect(event) {
+    let copyState = this.state;
+    copyState[event.target.name] = event.target.value;
+    this.setState(copyState);
   }
 
-  handleExtra(){
+  handleExtra(event){
+    console.log(event.target.name+' '+event.target.value+' Vald, intryckt: '+event.target.checked);
+    let copyState = this.state;
     
   }
 
@@ -32,13 +36,13 @@ class ComposeSalad extends Component {
       <div className="row h-200 p-5 bg-light border rounded-3">
         <h1>Välj innehållet i din sallad</h1>
         <p></p>
-        <SaladSelect property={'foundation'} /> 
+        <SaladSelect property={'foundation'} handleChange={this.handleSelect}/> 
         <p></p>
-        <SaladSelect property={'protein'} />
+        <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
         <p></p>
-        <SaladCheckBox property={'extra'}  />
+        <SaladCheckBox property={'extra'}  handleChange={this.handleExtra}/>
         <p></p>
-        <SaladSelect property={'dressing'} />
+        <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
         <p></p>
         </div>
     </div>
