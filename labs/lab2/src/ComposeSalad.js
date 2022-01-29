@@ -7,16 +7,16 @@ class ComposeSalad extends Component {
     super(props);
     this.state = {foundation : '', protein : '', extra : {}, dressing : ''};
 
-    this.handleSelected  = this.handleSelected.bind(this);
-    this.handleCallBackExtras = this.handleCallBackExtras(this);
+    this.handleSelect  = this.handleSelect.bind(this);
+    this.handleExtra = this.handleExtra.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSelected(propertyPicked, selectValue) {
+  handleSelect() {
     
   }
 
-  handleCallBackExtras(){
+  handleExtra(){
     
   }
 
@@ -30,13 +30,13 @@ class ComposeSalad extends Component {
     return (
     <div className="container col-12">
       <div className="row h-200 p-5 bg-light border rounded-3">
-        <SaladSelect property={'foundation'} handleChange={this.handleSelected}/> 
+        <SaladSelect property={'foundation'} handleChange={this.handleSelect}/> 
         <p></p>
-        <SaladSelect property={'protein'} />
+        <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
         <p></p>
-        <SaladCheckBox property={'extra'}  />
+        <SaladCheckBox property={'extra'}  handleChange={this.handleExtra}/>
         <p></p>
-        <SaladSelect property={'dressing'} />
+        <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
         <p></p>
         </div>
     </div>

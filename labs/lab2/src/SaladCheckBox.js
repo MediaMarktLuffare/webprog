@@ -12,8 +12,10 @@ class SaladCheckBox extends Component {
                         <div key={name}>
                             <input
                                 type='checkbox'
-                                name={name}
-                                onChange={this.handleChange}
+                                name={this.props.property}
+                                value={name}
+                                
+                                onChange={this.props.handleChange}
                             />
                             <label>
                                 {name +', '+inventory[name].price+' kr'}

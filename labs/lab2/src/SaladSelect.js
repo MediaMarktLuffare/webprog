@@ -10,11 +10,13 @@ class SaladSelect extends Component {
                     <select
                         onChange={this.props.handleChange}
                     >
+                        <option value="">---Välj en {this.props.property}---</option>
                         {Object.keys(inventory).filter(name =>
                         inventory[name][this.props.property]).map(name =>
                         <option key={name} value={name}>{name +', '+inventory[name].price+' kr'}</option>)}
                     </select>
                 </div>
+
             </form>
             
         );
