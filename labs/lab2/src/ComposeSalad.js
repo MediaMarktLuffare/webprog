@@ -22,7 +22,7 @@ class ComposeSalad extends Component {
 
   handleExtra(event){
     //console.log(event.target.value+' '+event.target.name+' Vald, intryckt: '+event.target.checked);
-    let copyState = {...this.state[event.target.value]}; //kopiering av hela blir knas
+    const copyState = {...this.state[event.target.value]}; //kopiering av hela blir knas
     //ändra i state, ta aldrig bort något.
     copyState[event.target.name] = event.target.checked;
     this.setState({[event.target.value] : copyState});
@@ -58,7 +58,7 @@ class ComposeSalad extends Component {
         <p></p>
         <SaladSelect id='protein' property={'protein'} handleChange={this.handleSelect}/>
         <p></p>
-        <SaladCheckbox id='extra' property={'extra'} handleChange={this.handleExtra}/>
+        <SaladCheckbox id='extra' property={'extra'} list={this.state.extra} handleChange={this.handleExtra}/>
         <p></p>
         <SaladSelect id='dressing' property={'dressing'} handleChange={this.handleSelect}/>
         <p></p>

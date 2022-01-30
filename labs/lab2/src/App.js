@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   addSalad(salad){
-    let copyState = [...this.state.shoppingCart];
+    const copyState = [...this.state.shoppingCart];
     copyState.push(salad);
     this.setState({shoppingCart : copyState});
   }

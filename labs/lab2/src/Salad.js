@@ -2,10 +2,7 @@ class Salad {
     static instanceCounter = 0;
     constructor() {
         this.salad = {}
-        Object.defineProperty(this, 'uuid', {
-            value : Salad.instanceCounter++,
-            writable: false
-        });
+        this.uuid = 'salad_' + Salad.instanceCounter++;
     }
 
     add(name, properties) {
