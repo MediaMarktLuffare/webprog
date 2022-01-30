@@ -22,19 +22,20 @@ class ComposeSalad extends Component {
 
   handleExtra(event){
     //console.log(event.target.value+' '+event.target.name+' Vald, intryckt: '+event.target.checked);
-    const copyState = {...this.state[event.target.value]}; //kopiering av hela blir knas
+    let copyState = {...this.state[event.target.value]}; //kopiering av hela blir knas
     //ändra i state, ta aldrig bort något.
     copyState[event.target.name] = event.target.checked;
+    //console.log('Test: '+this.state.extra[event.target.name]);
     this.setState({[event.target.value] : copyState});
+    
   }
 
   handleSubmit(event){
     event.preventDefault();
-
     let salad = new Salad();
     salad.add(this.state.foundation, inventory[this.state.foundation]);
     salad.add(this.state.protein, inventory[this.state.protein]);
-    Object.keys(this.state.extra).forEach(name => salad.add(name,inventory[name]))
+    Object.keys(this.state.extra).forEach(name => (this.state.extra[name] ? salad.add(name,inventory[name]) : salad.remove(name)));
     salad.add(this.state.dressing, inventory[this.state.dressing]);
     //console.log(JSON.stringify(salad)); 
     
@@ -48,6 +49,7 @@ class ComposeSalad extends Component {
     document.getElementById('dressing').reset();
   }
 
+  //Fråga om det med list={this.state.extra}, varför det är list är självklart men varför controlled?
   render() {
     return (
     <div className='container col-12'>
