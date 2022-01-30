@@ -7,7 +7,7 @@ class ViewOrder extends Component {
                 <div className='row h-200 p-5 bg-light border rounded-3'>
                     <h4>Beställningen</h4>
                     {this.props.order.map(salad =>
-                        <div key={salad} className="form-control form-control-lg">
+                        <div key={salad.uuid} className="form-control form-control-lg">
                             {salad.getIngredients()+', pris: '+ salad.getPrice()}                                
                         </div>
                     )}

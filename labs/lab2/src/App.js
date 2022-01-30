@@ -29,7 +29,7 @@ class App extends Component {
 
         <ViewOrder order={this.state.shoppingCart}/>
 
-        <ComposeSalad inventory={inventory} addToCart={this.addSalad}/>
+        <ComposeSalad inventory={inventory} addSalad={this.addSalad}/>
 
         <footer className="pt-3 mt-4 text-muted border-top">
           EDAF90 - webprogrammering
