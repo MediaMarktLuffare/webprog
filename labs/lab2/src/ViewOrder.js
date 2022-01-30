@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-class ViewCart extends Component {
+class ViewOrder extends Component {
     render(){
         return(
             <div className='container col-12'>
@@ -16,4 +16,4 @@ class ViewCart extends Component {
         );
     }
 }
-export default ViewCart;
+export default ViewOrder;
