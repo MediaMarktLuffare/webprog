@@ -28,24 +28,20 @@ class ComposeSalad extends Component {
     this.setState({[event.target.value] : copyState});
   }
 
-  createSalad(){
+  handleSubmit(event){
+    event.preventDefault();
+
     let salad = new Salad();
     salad.add(this.state.foundation, this.props.inventory[this.state.foundation]);
     salad.add(this.state.protein, this.props.inventory[this.state.protein]);
     Object.keys(this.state.extra).forEach(name => salad.add(name, this.props.inventory[name]));
     salad.add(this.state.dressing, this.props.inventory[this.state.dressing]);
-    //console.log(JSON.stringify(salad));
-  }
+    //console.log(JSON.stringify(salad)); 
 
-  handleSubmit(event){
-    event.preventDefault();     
-    this.props.addSalad(this.createSalad());
+    this.props.addSalad(salad);
     this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
 
-    document.getElementById('foundation').reset();
-    document.getElementById('protein').reset();
-    document.getElementById('extra').reset();
-    document.getElementById('dressing').reset();
+    HTMLFormElement.reset()
   }
   
 
