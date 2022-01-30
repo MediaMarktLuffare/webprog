@@ -28,7 +28,7 @@ class App extends Component {
         </header>
 
         <ViewOrder order={this.state.shoppingCart}/>
-
+        <p></p>
         <ComposeSalad inventory={inventory} addSalad={this.addSalad}/>
 
         <footer className="pt-3 mt-4 text-muted border-top">
