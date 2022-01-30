@@ -6,22 +6,34 @@ import { Component } from 'react';
 import inventory from './inventory.ES6';
 import ComposeSalad from './ComposeSalad';
 
-function App() {
-  return (
-  <div className="container py-4">
-    <header className="pb-3 mb-4 border-bottom">
-      <span className="fs-4">Sallads Bar</span>
-    </header>
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {shoppingCart : []};
+    this.addSalad = this.addSalad.bind(this);
+  }
 
-    <ComposeSalad inventory={inventory}/>
+  addSalad(salad) {
+    let copyState = [...this.state.shoppingCart];
+    copyState.push(salad);
+    this.setState({shoppingCart : copyState});
+  }
+
+  render(){
+    return (
+      <div className="container py-4">
+        <header className="pb-3 mb-4 border-bottom">
+          <span className="fs-4">Min egen salladsbar</span>
+        </header>
     
-    <footer className="pt-3 mt-4 text-muted border-top">
-      EDAF90 - webprogrammering
-    </footer>
+        <ComposeSalad inventory={inventory} addSalad={this.addSalad}/>
+        
 
-  </div>
-
-  );
+        <footer className="pt-3 mt-4 text-muted border-top">
+          EDAF90 - webprogrammering
+        </footer>
+      </div>
+      );
+  }
 }
-
 export default App;

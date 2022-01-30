@@ -2,7 +2,7 @@ class Salad {
     static instanceCounter = 0;
     constructor() {
         this.salad = {}
-        this.uuid;
+        this.uuid = 'salad_' + Salad.instanceCounter++;
     }
 
     add(name, properties) {
@@ -18,6 +18,10 @@ class Salad {
 
     count(property) {
         return Object.values(Object.keys(this.salad).filter(name => this.salad[name][property])).length;
+    }
+
+    getIngredients() {
+        return Object.keys(this.salad)+', ';
     }
 }
 

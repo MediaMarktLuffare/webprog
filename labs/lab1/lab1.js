@@ -112,7 +112,11 @@ class Salad {
         } 
         */
         //console.log(name + ' not removed!');
-    }   
+    } 
+    
+    getIngredients() {
+        return Object.keys(this.salad)+',';
+    }
 }
 
 //console.log('Test '+imported.inventory['Sallad'].foundation);
@@ -128,7 +132,7 @@ myCaesarSalad.add('Gurka', imported.inventory['Gurka']);
 console.log(JSON.stringify(myCaesarSalad) + '\n');
 myCaesarSalad.remove('Gurka');
 console.log(JSON.stringify(myCaesarSalad) + '\n');
-
+console.log('Testa och se: '+myCaesarSalad.getIngredients());
 console.log('\n--- Assignment 3 ---------------------------------------')
 
 //ev. ha fyra olika reduce? concat stackoverflow, reduce livecodedev

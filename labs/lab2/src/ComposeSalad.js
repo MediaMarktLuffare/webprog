@@ -1,7 +1,8 @@
 import { Component } from 'react';
+import inventory from './inventory.ES6';
 import SaladSelect from './SaladSelect';
 import SaladCheckbox from './SaladCheckbox';
-import inventory from './inventory.ES6';
+import Salad from './Salad';
 
 class ComposeSalad extends Component {
   constructor(props) {
@@ -23,38 +24,51 @@ class ComposeSalad extends Component {
     //console.log(event.target.value+' '+event.target.name+' Vald, intryckt: '+event.target.checked);
     let copyState = {...this.state[event.target.value]}; //kopiering av hela blir knas
     //ändra i state, ta aldrig bort något.
-    if(event.target.checked){
-      copyState[event.target.name] = true;
-    } else {
-      copyState[event.target.name] = false;
-    }
+    copyState[event.target.name] = event.target.checked;
     this.setState({[event.target.value] : copyState});
   }
 
+  createSalad(){
+    let salad = new Salad();
+    salad.add(this.state.foundation, this.props.inventory[this.state.foundation]);
+    salad.add(this.state.protein, this.props.inventory[this.state.protein]);
+    Object.keys(this.state.extra).forEach(name => salad.add(name, this.props.inventory[name]));
+    salad.add(this.state.dressing, this.props.inventory[this.state.dressing]);
+    //console.log(JSON.stringify(salad));
+  }
+
   handleSubmit(event){
-    event.preventDefault(); 
+    event.preventDefault();     
+    this.props.addSalad(this.createSalad());
     this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
+
+    document.getElementById('foundation').reset();
+    document.getElementById('protein').reset();
+    document.getElementById('extra').reset();
+    document.getElementById('dressing').reset();
   }
   
 
   render() {
     return (
-    <div className="container col-12">
-      <div className="row h-200 p-5 bg-light border rounded-3">
+    <div className='container col-12'>
+      <div className='row h-200 p-5 bg-light border rounded-3'>
         <h1>Välj innehållet i din sallad</h1>
         <p></p>
-        <SaladSelect property={'foundation'} handleChange={this.handleSelect}/> 
+        <SaladSelect id='foundation' property={'foundation'} handleChange={this.handleSelect}/> 
         <p></p>
-        <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
+        <SaladSelect id='protein' property={'protein'} handleChange={this.handleSelect}/>
         <p></p>
-        <SaladCheckbox property={'extra'} handleChange={this.handleExtra}/>
+        <SaladCheckbox id='extra' property={'extra'} handleChange={this.handleExtra}/>
         <p></p>
-        <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
+        <SaladSelect id='dressing' property={'dressing'} handleChange={this.handleSelect}/>
         <p></p>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <button type="submit" className="btn btn-primary mb-3">Beställ</button>
+        </form>
+      </div>
     </div>
     );
   }
-
 }
 export default ComposeSalad;
