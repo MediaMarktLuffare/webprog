@@ -115,7 +115,7 @@ class Salad {
     } 
     
     getIngredients() {
-        return Object.keys(this.salad)+',';
+        return Object.keys(this.salad)+', ';
     }
 }
 

@@ -3,3 +3,4 @@ check boxes: https://www.freecodecamp.org/news/how-to-work-with-multiple-checkbo
 Uppdatera parent för checkboxes? https://stackoverflow.com/questions/59832895/how-to-format-the-value-of-a-checkbox-field-using-react-final-form-field-array
 Keys for select options bra för att hålla koll på alla values selected: https://reactjs.org/docs/lists-and-keys.html#keys
 Object initializer, förklarar varför inget skit funka: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
+Reset form: https://stackoverflow.com/questions/997774/how-do-you-clear-a-plain-html-form-after-onsubmit#:~:text=You%20can%20simply%20put%3A,reset()%3B

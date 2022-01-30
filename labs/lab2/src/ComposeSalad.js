@@ -38,10 +38,15 @@ class ComposeSalad extends Component {
     salad.add(this.state.dressing, this.props.inventory[this.state.dressing]);
     //console.log(JSON.stringify(salad)); 
 
+    //glöm inte callback i App
     this.props.addSalad(salad);
     this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
 
-    HTMLFormElement.reset()
+    //Stack
+    document.getElementById('foundation').reset();
+    document.getElementById('protein').reset();
+    document.getElementById('extra').reset();
+    document.getElementById('dressing').reset();
   }
   
 
