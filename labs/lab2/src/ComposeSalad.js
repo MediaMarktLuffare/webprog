@@ -38,7 +38,7 @@ class ComposeSalad extends Component {
     salad.add(this.state.dressing, inventory[this.state.dressing]);
     //console.log(JSON.stringify(salad)); 
     
-    this.props.addSalad(salad);
+    this.props.addToCart(salad);
     this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
 
     //Stack

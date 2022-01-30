@@ -27,9 +27,9 @@ class App extends Component {
           <span className="fs-4">Min egen salladsbar</span>
         </header>
 
+        <ViewOrder order={this.state.shoppingCart}/>
 
-
-        <ComposeSalad inventory={inventory} addSalad={this.addSalad}/>
+        <ComposeSalad inventory={inventory} addToCart={this.addSalad}/>
 
         <footer className="pt-3 mt-4 text-muted border-top">
           EDAF90 - webprogrammering
