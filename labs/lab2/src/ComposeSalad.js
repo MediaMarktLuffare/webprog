@@ -32,13 +32,12 @@ class ComposeSalad extends Component {
     event.preventDefault();
 
     let salad = new Salad();
-    salad.add(this.state.foundation, this.props.inventory[this.state.foundation]);
-    salad.add(this.state.protein, this.props.inventory[this.state.protein]);
-    Object.keys(this.state.extra).forEach(name => salad.add(name, this.props.inventory[name]));
-    salad.add(this.state.dressing, this.props.inventory[this.state.dressing]);
+    salad.add(this.state.foundation, inventory[this.state.foundation]);
+    salad.add(this.state.protein, inventory[this.state.protein]);
+    Object.keys(this.state.extra).forEach(name => salad.add(name,inventory[name]))
+    salad.add(this.state.dressing, inventory[this.state.dressing]);
     //console.log(JSON.stringify(salad)); 
-
-    //glöm inte callback i App
+    
     this.props.addSalad(salad);
     this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
 
@@ -48,7 +47,6 @@ class ComposeSalad extends Component {
     document.getElementById('extra').reset();
     document.getElementById('dressing').reset();
   }
-  
 
   render() {
     return (

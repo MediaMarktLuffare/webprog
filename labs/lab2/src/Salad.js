@@ -24,5 +24,4 @@ class Salad {
         return Object.keys(this.salad);
     }
 }
-
 export default Salad;

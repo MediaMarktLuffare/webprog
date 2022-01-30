@@ -14,7 +14,7 @@ class App extends Component {
     this.addSalad = this.addSalad.bind(this);
   }
 
-  addSalad(salad) {
+  addSalad(salad){
     let copyState = [...this.state.shoppingCart];
     copyState.push(salad);
     this.setState({shoppingCart : copyState});
@@ -27,7 +27,7 @@ class App extends Component {
           <span className="fs-4">Min egen salladsbar</span>
         </header>
 
-        <ViewOrder order={this.state.shoppingCart}/>
+
 
         <ComposeSalad inventory={inventory} addSalad={this.addSalad}/>
 
