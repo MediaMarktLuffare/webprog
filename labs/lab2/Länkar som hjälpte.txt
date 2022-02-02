@@ -4,3 +4,7 @@ Uppdatera parent för checkboxes? https://stackoverflow.com/questions/59832895/h
 Keys for select options bra för att hålla koll på alla values selected: https://reactjs.org/docs/lists-and-keys.html#keys
 Object initializer, förklarar varför inget skit funka: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
 Reset form: https://stackoverflow.com/questions/997774/how-do-you-clear-a-plain-html-form-after-onsubmit#:~:text=You%20can%20simply%20put%3A,reset()%3B
+Callback functions short way: https://stackoverflow.com/questions/45359113/callback-function-with-parameters-reactjs
+Callback functions longer way: https://www.geeksforgeeks.org/how-to-pass-data-from-one-component-to-other-component-in-reactjs/
+			       https://stackoverflow.com/questions/40795906/onchange-event-for-react-child-component-to-update-state
+

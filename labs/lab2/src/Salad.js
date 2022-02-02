@@ -16,10 +16,12 @@ class Salad {
         return Object.keys(this.salad).reduce((acc, currV) => acc + this.salad[currV].price,0);
     }
 
+    //Fråga i värsta fall igen.
     count(property) {
-        return Object.values(Object.keys(this.salad).filter(name => this.salad[name][property])).length;
+        return Object.keys(this.salad).filter(name => this.salad[name][property]).length;
     }
 
+    //Gör denna lite snyggare kanske?
     getIngredients() {
         return Object.keys(this.salad);
     }

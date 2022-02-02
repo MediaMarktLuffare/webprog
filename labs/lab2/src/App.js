@@ -10,14 +10,19 @@ import ViewOrder from './ViewOrder';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {shoppingCart : []};
+    this.state = {order : []};
     this.addSalad = this.addSalad.bind(this);
+    this.removeOrders = this.removeOrders.bind(this);
   }
 
   addSalad(salad){
-    const copyState = [...this.state.shoppingCart];
+    const copyState = [...this.state.order];
     copyState.push(salad);
-    this.setState({shoppingCart : copyState});
+    this.setState({order : copyState});
+  }
+
+  removeOrders(){
+    this.setState({order : []});
   }
 
   render(){
@@ -27,9 +32,9 @@ class App extends Component {
           <span className="fs-4">Min egen salladsbar</span>
         </header>
 
-        <ViewOrder order={this.state.shoppingCart}/>
+        <ViewOrder order={this.state.order} handleSubmit={this.removeOrders}/>
         <p></p>
-        <ComposeSalad inventory={inventory} addSalad={this.addSalad}/>
+        <ComposeSalad inventory={inventory} addToCart={this.addSalad}/>
 
         <footer className="pt-3 mt-4 text-muted border-top">
           EDAF90 - webprogrammering

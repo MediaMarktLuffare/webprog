@@ -146,7 +146,7 @@ Salad.prototype.getPrice = function(){
 
 //Funka inte med Object.values()??  
 Salad.prototype.count = function (property){
-    return Object.values(Object.keys(this.salad).filter(name => this.salad[name][property])).length;
+    return Object.keys(this.salad).filter(name => this.salad[name][property]).length;
 
     /* Old, and not intended as the teacher wanted.
     if(property === 'foundation'){

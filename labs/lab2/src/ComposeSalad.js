@@ -32,6 +32,7 @@ class ComposeSalad extends Component {
 
   handleSubmit(event){
     event.preventDefault();
+
     let salad = new Salad();
     salad.add(this.state.foundation, inventory[this.state.foundation]);
     salad.add(this.state.protein, inventory[this.state.protein]);
@@ -39,16 +40,17 @@ class ComposeSalad extends Component {
     salad.add(this.state.dressing, inventory[this.state.dressing]);
     //console.log(JSON.stringify(salad)); 
     
-    this.props.addSalad(salad);
+    this.props.addToCart(salad);
     this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
 
-    //Stack
+    //Stack, ändrar direkt till DOM vilket vi inte vill. 
+    /*
     document.getElementById('foundation').reset();
     document.getElementById('protein').reset();
     document.getElementById('extra').reset();
     document.getElementById('dressing').reset();
+    */
   }
-
   //Fråga om det med list={this.state.extra}, varför det är list är självklart men varför controlled?
   render() {
     return (

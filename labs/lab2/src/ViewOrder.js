@@ -11,6 +11,10 @@ class ViewOrder extends Component {
                             {salad.getIngredients()+', pris: '+ salad.getPrice()}                                
                         </div>
                     )}
+                    <p></p>
+                    <form onSubmit={this.props.handleSubmit}>
+                        <button type="submit" className="btn btn-primary mb-3 invisible">Ta bort</button>
+                    </form>
                 </div>
             </div>
         );

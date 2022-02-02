@@ -2,11 +2,6 @@ import { Component } from 'react';
 import inventory from './inventory.ES6';
 
 class SaladSelect extends Component {
-
-    constructor (props) {
-        super(props);
-    }
-
     render(){
         return(
             <form 
