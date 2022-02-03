@@ -42,14 +42,6 @@ class ComposeSalad extends Component {
     
     this.props.addToCart(salad);
     this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
-
-    //Stack, ändrar direkt till DOM vilket vi inte vill. 
-    /*
-    document.getElementById('foundation').reset();
-    document.getElementById('protein').reset();
-    document.getElementById('extra').reset();
-    document.getElementById('dressing').reset();
-    */
   }
   //Fråga om det med list={this.state.extra}, varför det är list är självklart men varför controlled?
   render() {
@@ -58,13 +50,13 @@ class ComposeSalad extends Component {
       <div className='row h-200 p-5 bg-light border rounded-3'>
         <h1>Välj innehållet i din sallad</h1>
         <p></p>
-        <SaladSelect id='foundation' property={'foundation'} handleChange={this.handleSelect}/> 
+        <SaladSelect property={'foundation'} handleChange={this.handleSelect}/> 
         <p></p>
-        <SaladSelect id='protein' property={'protein'} handleChange={this.handleSelect}/>
+        <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
         <p></p>
-        <SaladCheckbox id='extra' property={'extra'} list={this.state.extra} handleChange={this.handleExtra}/>
+        <SaladCheckbox property={'extra'} list={this.state.extra} handleChange={this.handleExtra}/>
         <p></p>
-        <SaladSelect id='dressing' property={'dressing'} handleChange={this.handleSelect}/>
+        <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
         <p></p>
         <form onSubmit={this.handleSubmit}>
           <button type="submit" className="btn btn-primary mb-3">Beställ</button>

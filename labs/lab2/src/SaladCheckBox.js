@@ -18,7 +18,7 @@ class SaladCheckbox extends Component {
                                 value={this.props.property}
                                 name={name}
                                 onChange={this.props.handleChange} 
-                                checked={this.props.list[name] || false}                             
+                                checked={this.props.list[name] || false}                          
                             />
                             <label className='form-check-label'>
                                 {name}
