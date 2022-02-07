@@ -53,13 +53,7 @@ class App extends Component {
   }
 }
 
-function Footer() {
-  return (
-    <footer className="pt-3 mt-4 text-muted border-top">
-      EDAF90 - webprogrammering
-    </footer>
-  );
-}
+
 
 function Header() {
   return (
@@ -85,6 +79,12 @@ function Navbar() {
       {/* more links */}
     </ul>
   );
-
+}
+function Footer() {
+  return (
+    <footer className="pt-3 mt-4 text-muted border-top">
+      EDAF90 - webprogrammering
+    </footer>
+  );
 }
 export default App;
