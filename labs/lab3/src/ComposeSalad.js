@@ -15,8 +15,8 @@ class ComposeSalad extends Component {
   }
 
   handleSelect(event) {
+    event.target.parentElement.classList.add("was-validated");
     //console.log(event.target.name + ' har '+ event.target.value);
-    //ECMA2015  t.ex. foundation          sallad
     this.setState({[event.target.name] : event.target.value});
   }
 
@@ -30,36 +30,47 @@ class ComposeSalad extends Component {
     
   }
 
-  handleSubmit(event){
-    event.preventDefault();
-
+  createSalad(){
     let salad = new Salad();
     salad.add(this.state.foundation, inventory[this.state.foundation]);
     salad.add(this.state.protein, inventory[this.state.protein]);
     Object.keys(this.state.extra).forEach(name => (this.state.extra[name] ? salad.add(name,inventory[name]) : salad.remove(name)));
     salad.add(this.state.dressing, inventory[this.state.dressing]);
-    //console.log(JSON.stringify(salad)); 
-    
-    this.props.addToCart(salad);
-    this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
+    //console.log(JSON.stringify(salad));
+    return salad;
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    //event.target.classList.add("was-validated");
+
+    if(event.target.checkValidity() === false){
+      //console.log("ERROR!!!");
+      event.target.classList.add("was-validated");
+     } else {
+      this.props.addToCart(this.createSalad());
+      this.setState({foundation : '', protein : '', extra : {}, dressing : ''});
+      this.props.navigate("/view-order");
+      //console.log("NOT ERROR!!!");
+     }
   }
   //Fråga om det med list={this.state.extra}, varför det är list är självklart men varför controlled?
   render() {
     return (
     <div className='container col-12'>
       <div className='row h-200 p-5 bg-light border rounded-3'>
-        <h1>Välj innehållet i din sallad</h1>
-        <p></p>
-        <SaladSelect property={'foundation'} handleChange={this.handleSelect}/> 
-        <p></p>
-        <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
-        <p></p>
-        <SaladCheckbox property={'extra'} list={this.state.extra} handleChange={this.handleExtra}/>
-        <p></p>
-        <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
-        <p></p>
-        <form onSubmit={this.handleSubmit}>
-          <button type="submit" className="btn btn-primary mb-3">Beställ</button>
+        <form onSubmit={this.handleSubmit} noValidate>
+          <h1>Välj innehållet i din sallad</h1>
+          <p></p>
+          <SaladSelect property={'foundation'} handleChange={this.handleSelect}/> 
+          <p></p>
+          <SaladSelect property={'protein'} handleChange={this.handleSelect}/>
+          <p></p>
+          <SaladCheckbox property={'extra'} list={this.state.extra} handleChange={this.handleExtra}/>
+          <p></p>
+          <SaladSelect property={'dressing'} handleChange={this.handleSelect}/>
+          <p></p>          
+          <button type='submit' className='btn btn-primary mb-3'>Beställ</button>
         </form>
       </div>
     </div>

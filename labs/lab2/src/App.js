@@ -16,9 +16,15 @@ class App extends Component {
   }
 
   addSalad(salad){
+    /*
     const copyState = [...this.state.order];
     copyState.push(salad);
     this.setState({order : copyState});
+    */
+    this.setState(prevState => ({
+      order: [...prevState.order, salad]
+    }));
+
   }
 
   removeOrders(){

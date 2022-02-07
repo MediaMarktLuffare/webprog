@@ -23,11 +23,14 @@ class ComposeSalad extends Component {
   handleExtra(event){
     //console.log(event.target.value+' '+event.target.name+' Vald, intryckt: '+event.target.checked);
     let copyState = {...this.state[event.target.value]}; //kopiering av hela blir knas
-    //ändra i state, ta aldrig bort något.
+    // //ändra i state, ta aldrig bort något.
     copyState[event.target.name] = event.target.checked;
-    //console.log('Test: '+this.state.extra[event.target.name]);
+    // //console.log('Test: '+this.state.extra[event.target.name]);
     this.setState({[event.target.value] : copyState});
-    
+
+    // this.setState(prevState =>({ //vad betyder props?
+    //   [event.target.value] : Object.assign({...prevState[event.target.value]}, copyState[event.target.name])
+    // }));
   }
 
   handleSubmit(event){

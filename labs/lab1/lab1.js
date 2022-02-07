@@ -260,3 +260,5 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
  console.log('Antal grejer i korgen:' + basketTest.size());
  console.log('Korgens pris: '+ basketTest.price());
  */
+let test = imported.inventory["Avocado"];
+console.log("Avocado: "+(Object.keys(test).map(name =>name +": "+ test[name])));

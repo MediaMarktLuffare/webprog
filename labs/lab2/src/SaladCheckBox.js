@@ -4,9 +4,7 @@ import inventory from './inventory.ES6';
 class SaladCheckbox extends Component {
     render(){
         return(
-            <form
-                id={this.props.id}
-            >
+            <form>
                 <div>
                     <h4>Välj {this.props.property}</h4>
                     {Object.keys(inventory).filter(name => inventory[name][this.props.property])

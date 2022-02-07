@@ -1,0 +1,2 @@
+Validation form funkar inte: https://stackoverflow.com/questions/64165092/react-bootstrap-validation-not-working-on-a-second-form
+Punkt 7: https://stackoverflow.com/questions/38726346/how-do-i-create-linksor-pass-any-other-html-jsx-into-the-label-of-the-material

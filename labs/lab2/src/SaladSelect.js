@@ -6,7 +6,6 @@ class SaladSelect extends Component {
         return(
             <form 
                 className='form-div'
-                id={this.props.id}
             >
                 <div className='form-group col-md-4'>
                     <h4>Välj {this.props.property}</h4>
