@@ -54,7 +54,7 @@ class ComposeSalad extends Component {
       //console.log("NOT ERROR!!!");
      }
   }
-  //Fråga om det med list={this.state.extra}, varför det är list är självklart men varför controlled?
+  
   render() {
     return (
     <div className='container col-12'>
