@@ -12,5 +12,4 @@ function ViewIngredient(props) {
         </div>
     );
 }
-
 export default ViewIngredient;

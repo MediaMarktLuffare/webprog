@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Component } from 'react';
 import inventory from './inventory.ES6';
 import ViewOrder from './ViewOrder';
-import {Link, Route, Routes} from "react-router-dom"
+import {NavLink, Link, Route, Routes} from "react-router-dom"
 import ComposeSaladWrapper from './ComposeSaladWrapper';
 import ViewIngredient from "./ViewIngredient";
 
@@ -19,9 +19,14 @@ class App extends Component {
   }
 
   addSalad(salad){
-    const copyState = [...this.state.order];
-    copyState.push(salad);
-    this.setState({order : copyState});
+    
+    // const copyState = [...this.state.order];
+    // copyState.push(salad);
+    // this.setState({order : copyState});
+
+    this.setState(prevState => (
+      {order: [...prevState.order, salad]}
+    ));
   }
 
   removeOrders(){
@@ -46,7 +51,7 @@ class App extends Component {
         <Route index path="/" element={<h1>Välkommna!</h1>} />
         <Route path="/compose-salad" element={<ComposeSaladWrapper inventory={inventory} addToCart={this.addSalad} />} />
         <Route path="/view-order" element={<ViewOrder order={this.state.order} />} />
-        <Route path="/view-ingredient/:name" element={<ViewIngredient inventory={inventory} />}/>
+        <Route path="/view-ingredient/:name" element={<ViewIngredient inventory={inventory} />} />
         <Route path="*" element={<h1>Finns inget här!</h1>} />
       </Routes>
     );
