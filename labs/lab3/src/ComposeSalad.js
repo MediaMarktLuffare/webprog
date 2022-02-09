@@ -30,7 +30,7 @@ class ComposeSalad extends Component {
 
     this.setState(prevState => (
       {extra : {...prevState.extra, [event.target.name]: event.target.checked}}
-    ));
+    ), console.log(event.target.value+' '+event.target.name+' Vald, intryckt: '+event.target.checked));
     
   }
 
