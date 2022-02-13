@@ -40,7 +40,7 @@ class App extends Component {
     .then(response => response.json())
     .then(data => console.log(data))
     .then(() => this.setState({order : []}));
-}
+  }
 
   componentDidMount() {
     const tempInv = {}
