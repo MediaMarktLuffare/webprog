@@ -13,17 +13,12 @@ import ViewIngredient from "./ViewIngredient";
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {order : [], inventory : {}};
+    this.state = {order: [], inventory: {}};
     this.addSalad = this.addSalad.bind(this);
     this.removeOrders = this.removeOrders.bind(this);
   }
 
   addSalad(salad){
-    
-    // const copyState = [...this.state.order];
-    // copyState.push(salad);
-    // this.setState({order : copyState});
-
     this.setState(prevState => (
       {order: [...prevState.order, salad]}
     ));
@@ -31,6 +26,62 @@ class App extends Component {
 
   removeOrders(){
     this.setState({order : []});
+  }
+
+  componentDidMount() {
+    const tempInv = {}
+    const properterties = ['foundations', 'proteins', 'extras', 'dressings'];
+    /*
+    this.fetchIngredient('foundations','Sallad')
+      .then(data => this.setState({ inventory : {'Salad' : data}}));
+    */
+    /*
+    this.fetchProperty('foundations')
+      .then(values => {
+        values.forEach(ingr => 
+          this.fetchIngredient('foundations',ingr).then(data => tempInv[ingr] = data)
+        )
+      })
+      .then((response) => this.setState({inventory: tempInv})
+      ).catch(error => {
+        console.log(error);
+      });
+    */
+
+    Promise.all(
+      properterties.map(property => {
+        this.fetchProperty(property)
+          .then(values => {
+            values.forEach(ingredient => {
+              this.fetchIngredient(property, ingredient).then(data => tempInv[ingredient] = data)
+            })
+          })
+          .then(() => this.setState({inventory : tempInv}, console.log(this.state.inventory)))
+          .catch(error => {
+            console.log(error);
+          })
+      })
+    );
+  }
+
+  fetchIngredient(property, ingredient){
+    const url = 'http://localhost:8080/'+property+'/'+ingredient;
+    return this.safeFetchJson(url);
+  }
+
+  fetchProperty(property){
+    const url = 'http://localhost:8080/'+property;
+    return this.safeFetchJson(url);
+  }
+
+  safeFetchJson(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('${url} returned status ${response.status}');
+        }
+        return response.json();
+      });
   }
 
   render() {

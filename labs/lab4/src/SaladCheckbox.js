@@ -1,32 +1,35 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+//import inventory from './inventory.ES6';
 import './App.css';
-import { Component } from 'react';
-import inventory from './inventory.ES6';
-import {Link} from "react-router-dom";
 
 class SaladCheckbox extends Component {
-    render(){
-        return(
+
+
+    render() {
+        return (
             <div>
-                <h4>Välj {this.props.property}</h4>
-                {Object.keys(inventory).filter(name => inventory[name][this.props.property])
-                .map(name =>
-                    <div key={name} className='form-group form-check form-check-inline col-md-3'>
+                {Object.keys(this.props.inventory).filter(name => this.props.inventory[name][this.props.property]).map(name =>
+                    <div className="form-check"
+                        key={name} className="form-check form-check-inline col-md-3">
                         <input
-                           className='form-check-input'
-                            type='checkbox'
+                            checked={this.props.list[name] || false}
+                            className="form-check-input"
+                            type="checkbox"
                             value={this.props.property}
                             name={name}
-                            onChange={this.props.handleChange} 
-                            checked={this.props.list[name] || false}                          
+                            onChange={this.props.handleSelect}
                         />
-                        <label className='form-check-label'>
-                            <Link className="nounderline" to={'/view-ingredient/'+name}>
+
+                        <label className="form-check-label"  >
+                            <Link className="nounderline" to={'/view-ingredient/' + name}>
                                 {name}
                             </Link>
-                        </label>                                          
+                        </label>
                     </div>
                 )}
             </div>
+
         );
     }
 }

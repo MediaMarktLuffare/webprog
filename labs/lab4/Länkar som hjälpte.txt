@@ -1,0 +1,1 @@
+Ass 2 funka inte: https://bobbyhadz.com/blog/javascript-cannot-convert-undefined-or-null-to-object
