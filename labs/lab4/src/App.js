@@ -1,21 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import { Component } from 'react';
-//import inventory from './inventory.ES6';
 import ViewOrder from './ViewOrder';
-import {NavLink, Link, Route, Routes} from "react-router-dom"
+import {Link, Route, Routes} from "react-router-dom"
 import ComposeSaladWrapper from './ComposeSaladWrapper';
 import ViewIngredient from "./ViewIngredient";
-
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {order: [], inventory: {}};
+    this.state = {order : [], inventory : {}};
     this.addSalad = this.addSalad.bind(this);
-    this.removeOrders = this.removeOrders.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   addSalad(salad){
@@ -24,9 +21,28 @@ class App extends Component {
     ));
   }
 
-  removeOrders(){
-    this.setState({order : []});
-  }
+  handleSubmit(event) {
+    event.preventDefault();
+
+    console.log('State: '+JSON.stringify(Object.keys(this.state.order[0].salad)));
+
+    const mySaladIngredients = this.state.order.map(mySalad => Object.keys(mySalad['salad']));
+
+    console.log('Hint: '+JSON.stringify(mySaladIngredients));
+
+   const url = "http://localhost:8080/orders/";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mySaladIngredients),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .then(() => this.setState({order : []}));
+}
 
   componentDidMount() {
     const tempInv = {}
@@ -47,7 +63,6 @@ class App extends Component {
         console.log(error);
       });
     */
-
     Promise.all(
       properterties.map(property => {
         this.fetchProperty(property)
@@ -56,7 +71,7 @@ class App extends Component {
               this.fetchIngredient(property, ingredient).then(data => tempInv[ingredient] = data)
             })
           })
-          .then(() => this.setState({inventory : tempInv}, console.log(this.state.inventory)))
+          .then(() => this.setState(({inventory : tempInv})))
           .catch(error => {
             console.log(error);
           })
@@ -101,7 +116,7 @@ class App extends Component {
       <Routes>
         <Route index path="/" element={<h1>Välkommna!</h1>} />
         <Route path="/compose-salad" element={<ComposeSaladWrapper inventory={this.state.inventory} addToCart={this.addSalad} />} />
-        <Route path="/view-order" element={<ViewOrder order={this.state.order} />} />
+        <Route path="/view-order" element={<ViewOrder order={this.state.order} handleSubmit={this.handleSubmit} />} />
         <Route path="/view-ingredient/:name" element={<ViewIngredient inventory={this.state.inventory} />} />
         <Route path="*" element={<h1>Finns inget här!</h1>} />
       </Routes>

@@ -13,9 +13,10 @@ class ViewOrder extends Component {
                     )}
                     <p></p>
                     <form onSubmit={this.props.handleSubmit}>
-                        <button type="submit" className="btn btn-primary mb-3 invisible">Ta bort</button>
+                        <button type="submit" className="btn btn-primary mb-3">Beställ</button>
                     </form>
                 </div>
+
             </div>
         );
     }
