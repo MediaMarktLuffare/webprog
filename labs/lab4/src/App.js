@@ -34,9 +34,7 @@ class App extends Component {
 
     fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(mySaladIngredients),
     })
     .then(response => response.json())
@@ -47,22 +45,8 @@ class App extends Component {
   componentDidMount() {
     const tempInv = {}
     const properterties = ['foundations', 'proteins', 'extras', 'dressings'];
-    /*
-    this.fetchIngredient('foundations','Sallad')
-      .then(data => this.setState({ inventory : {'Salad' : data}}));
-    */
-    /*
-    this.fetchProperty('foundations')
-      .then(values => {
-        values.forEach(ingr => 
-          this.fetchIngredient('foundations',ingr).then(data => tempInv[ingr] = data)
-        )
-      })
-      .then((response) => this.setState({inventory: tempInv})
-      ).catch(error => {
-        console.log(error);
-      });
-    */
+
+    //Resterande steg
     Promise.all(
       properterties.map(property => {
         this.fetchProperty(property)
@@ -77,6 +61,23 @@ class App extends Component {
           })
       })
     );
+
+    /* Steg 1
+    this.fetchIngredient('foundations','Sallad')
+      .then(data => this.setState({ inventory : {'Salad' : data}}));
+    */
+    /* Steg 2
+    this.fetchProperty('foundations')
+      .then(values => {
+        values.forEach(ingr => 
+          this.fetchIngredient('foundations',ingr).then(data => tempInv[ingr] = data)
+        )
+      })
+      .then((response) => this.setState({inventory: tempInv})
+      ).catch(error => {
+        console.log(error);
+      });
+    */
   }
 
   fetchIngredient(property, ingredient){
