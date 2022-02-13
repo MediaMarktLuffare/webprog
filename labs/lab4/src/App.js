@@ -26,11 +26,11 @@ class App extends Component {
 
     console.log('State: '+JSON.stringify(Object.keys(this.state.order[0].salad)));
 
-    const mySaladIngredients = this.state.order.map(mySalad => Object.keys(mySalad['salad']));
+    const mySaladIngredients = this.state.order.map(mySalad => Object.keys(mySalad.salad));
 
     console.log('Hint: '+JSON.stringify(mySaladIngredients));
 
-   const url = "http://localhost:8080/orders/";
+    const url = "http://localhost:8080/orders/";
 
     fetch(url, {
       method: "POST",
