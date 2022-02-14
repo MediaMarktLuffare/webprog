@@ -10,12 +10,17 @@ import ViewIngredient from "./ViewIngredient";
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {order : [], inventory : {}};
+
+    const myMemory = JSON.parse(localStorage.getItem('order'));
+    this.state = {order : myMemory, inventory : {}};
+
     this.addSalad = this.addSalad.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   addSalad(salad){
+    window.localStorage.setItem('order', JSON.stringify([...this.state.order, salad]));
+
     this.setState(prevState => (
       {order: [...prevState.order, salad]}
     ));
@@ -24,38 +29,35 @@ class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log('State: '+JSON.stringify(Object.keys(this.state.order[0].salad)));
-
+    //console.log('State: '+JSON.stringify(Object.keys(this.state.order[0].salad)));
     const mySaladIngredients = this.state.order.map(mySalad => Object.keys(mySalad.salad));
+    //console.log('Hint: '+JSON.stringify(mySaladIngredients));
 
-    console.log('Hint: '+JSON.stringify(mySaladIngredients));
-
-    const url = "http://localhost:8080/orders/";
-
-    fetch(url, {
+    const request = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(mySaladIngredients),
-    })
+    };
+
+    fetch("http://localhost:8080/orders/", request)
     .then(response => response.json())
     .then(data => console.log(data))
     .then(() => this.setState({order : []}));
+    window.localStorage.setItem("order", "[]"); //.clear(); inte smart om man har en större app
   }
 
   componentDidMount() {
     const tempInv = {}
-    const properterties = ['foundations', 'proteins', 'extras', 'dressings'];
-
     //Resterande steg
     Promise.all(
-      properterties.map(property => {
+      ['foundations', 'proteins', 'extras', 'dressings'].map(property => {
         this.fetchProperty(property)
           .then(values => {
             values.forEach(ingredient => {
               this.fetchIngredient(property, ingredient).then(data => tempInv[ingredient] = data)
             })
           })
-          .then(() => this.setState(({inventory : tempInv})))
+          .then(() => this.setState({inventory : tempInv}))
           .catch(error => {
             console.log(error);
           })
@@ -80,11 +82,13 @@ class App extends Component {
     */
   }
 
+  //Steg 1
   fetchIngredient(property, ingredient){
     const url = 'http://localhost:8080/'+property+'/'+ingredient;
     return this.safeFetchJson(url);
   }
 
+  //Steg 2
   fetchProperty(property){
     const url = 'http://localhost:8080/'+property;
     return this.safeFetchJson(url);
@@ -146,7 +150,6 @@ function Navbar() {
           Se din beställning
         </Link>
       </li>
-      {/* more links */}
     </ul>
   );
 }

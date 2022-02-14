@@ -1,8 +1,9 @@
+import { v4 as uuidv4 } from 'uuid';
+
 class Salad {
-    static instanceCounter = 0;
     constructor() {
         this.salad = {}
-        this.uuid = 'salad_' + Salad.instanceCounter++;
+        this.uuid = uuidv4();
     }
 
     add(name, properties) {
@@ -16,14 +17,21 @@ class Salad {
         return Object.keys(this.salad).reduce((acc, currV) => acc + this.salad[currV].price,0);
     }
 
-    //Fråga i värsta fall igen.
     count(property) {
         return Object.keys(this.salad).filter(name => this.salad[name][property]).length;
     }
 
-    //Gör denna lite snyggare kanske?
     getIngredients() {
         return Object.keys(this.salad);
     }
 }
+//Punkt 3, liknar lab1 
+Salad.getPrice = function(salad){
+    return Object.keys(salad.salad).reduce((acc, currV) => acc + salad.salad[currV].price,0);
+}
+
+Salad.getIngredients = function(salad){
+    return Object.keys(salad.salad);
+}
+
 export default Salad;

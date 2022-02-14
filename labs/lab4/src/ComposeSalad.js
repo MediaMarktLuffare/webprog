@@ -35,7 +35,6 @@ class ComposeSalad extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    event.target.classList.add("was-validated");
 
     if(event.target.checkValidity() === false){
       event.target.classList.add("was-validated");
