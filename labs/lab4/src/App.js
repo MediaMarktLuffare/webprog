@@ -49,7 +49,7 @@ class App extends Component {
 
   componentDidMount() {
     //Något sätt att inte börja med null?
-    const myMemory = JSON.parse(localStorage.getItem('mySalad'));
+    const myMemory = JSON.parse(window.localStorage.getItem('mySalad'));
     //console.log('myMemory är: ' + myMemory)
 
     if(myMemory){
