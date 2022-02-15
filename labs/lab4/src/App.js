@@ -43,7 +43,7 @@ class App extends Component {
     .then(response => response.json())
     .then(data => console.log(data))
     .then(() => this.setState({order : []}));
-    window.localStorage.setItem("order", "[]"); //.clear(); inte smart om man har en större app
+    window.localStorage.clear(); //kanske inte smart med clear
   }
 
   componentDidMount() {
