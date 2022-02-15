@@ -10,9 +10,7 @@ import ViewIngredient from "./ViewIngredient";
 class App extends Component {
   constructor(props){
     super(props);
-
-    const myMemory = JSON.parse(localStorage.getItem('order'));
-    this.state = {order : myMemory, inventory : {}};
+    this.state = {order : [], inventory : {}};
 
     this.addSalad = this.addSalad.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,6 +45,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const myMemory = JSON.parse(localStorage.getItem('order'));
+
+    if(myMemory != null){
+      this.setState({order: myMemory});
+    } 
+        
     const tempInv = {}
     //Resterande steg
     Promise.all(
