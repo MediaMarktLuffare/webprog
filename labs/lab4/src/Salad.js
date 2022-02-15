@@ -25,7 +25,7 @@ class Salad {
         return Object.keys(this.salad);
     }
 }
-//Punkt 3, liknar lab1 
+//Punkt 3
 Salad.getPrice = function(salad){
     return Object.keys(salad.salad).reduce((acc, currV) => acc + salad.salad[currV].price,0);
 }

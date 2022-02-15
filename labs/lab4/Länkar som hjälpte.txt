@@ -1,3 +1,7 @@
 Ass 2 funka inte: https://bobbyhadz.com/blog/javascript-cannot-convert-undefined-or-null-to-object
 Ass 4: Beroende på hur du har löst Salad.js tills nu skiljer detta men om du har ett objekt så mapa den utifrån vad den heter i classen t.ex. this.salad i mitt fall
 Ass 5: https://stackoverflow.com/questions/23728626/localstorage-and-json-stringify-json-parse
+Ass 5 punkt 3: javascripttutorial.net/es6/javascript-static-method/
+localStorage: https://www.youtube.com/watch?v=OqMk-mPs6Dw
+Fetch: https://www.youtube.com/watch?v=cuEtnrL9-H0
+Promise: https://www.youtube.com/watch?v=DHvZLI7Db8E 

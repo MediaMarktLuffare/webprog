@@ -17,7 +17,8 @@ class App extends Component {
   }
 
   addSalad(salad){
-    window.localStorage.setItem('order', JSON.stringify([...this.state.order, salad]));
+    const data = JSON.stringify([...this.state.order, salad]);
+    window.localStorage.setItem('mySalad', data);
 
     this.setState(prevState => (
       {order: [...prevState.order, salad]}
@@ -27,7 +28,8 @@ class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    //console.log('State: '+JSON.stringify(Object.keys(this.state.order[0].salad)));
+    //console.log('Values State: '+JSON.stringify(Object.values(this.state.order[0].salad)));
+    //console.log('Keys State: '+JSON.stringify(Object.keys(this.state.order[0].salad)));
     const mySaladIngredients = this.state.order.map(mySalad => Object.keys(mySalad.salad));
     //console.log('Hint: '+JSON.stringify(mySaladIngredients));
 
@@ -40,15 +42,18 @@ class App extends Component {
     fetch("http://localhost:8080/orders/", request)
     .then(response => response.json())
     .then(data => console.log(data))
-    .then(() => this.setState({order : []}));
+    .then(() => this.setState({order : []}))
+    .catch(error => console.log(error));
     window.localStorage.clear(); //kanske inte smart med clear
   }
 
   componentDidMount() {
-    const myMemory = JSON.parse(localStorage.getItem('order'));
+    //Något sätt att inte börja med null?
+    const myMemory = JSON.parse(localStorage.getItem('mySalad'));
+    //console.log('myMemory är: ' + myMemory)
 
-    if(myMemory != null){
-      this.setState({order: myMemory});
+    if(myMemory){
+      this.setState({order:  myMemory});
     } 
         
     const tempInv = {}
@@ -57,32 +62,33 @@ class App extends Component {
       ['foundations', 'proteins', 'extras', 'dressings'].map(property => {
         this.fetchProperty(property)
           .then(values => {
-            values.forEach(ingredient => {
-              this.fetchIngredient(property, ingredient).then(data => tempInv[ingredient] = data)
+            values.map(ingredient => {
+              this.fetchIngredient(property, ingredient)
+              .then(data => tempInv[ingredient] = data)
+              .catch(error => console.log(error))
             })
           })
-          .then(() => this.setState({inventory : tempInv}))
-          .catch(error => {
-            console.log(error);
-          })
       })
-    );
+    )
+    .then(() => this.setState({inventory : tempInv}))
+    .catch(error => console.log(error))
 
     /* Steg 1
     this.fetchIngredient('foundations','Sallad')
-      .then(data => this.setState({ inventory : {'Salad' : data}}));
+      .then(data => this.setState({ inventory : {'Salad' : data}}))
+      .catch(error => console.log(error));
     */
     /* Steg 2
     this.fetchProperty('foundations')
       .then(values => {
         values.forEach(ingr => 
-          this.fetchIngredient('foundations',ingr).then(data => tempInv[ingr] = data)
+          this.fetchIngredient('foundations',ingr)
+          .then(data => tempInv[ingr] = data)
+          .catch(error => console.log(error))
         )
       })
-      .then((response) => this.setState({inventory: tempInv})
-      ).catch(error => {
-        console.log(error);
-      });
+      .then(() => this.setState({inventory: tempInv}))
+      .catch(error => console.log(error));
     */
   }
 
