@@ -9,7 +9,7 @@ class ViewOrder extends Component {
                     <h4>Beställningen</h4>
                     {this.props.order.map(mySalad =>
                         <div key={mySalad.uuid} className="form-control form-control-lg">
-                            {Salad.getIngredients(mySalad)+', pris: '+ Salad.getPrice(mySalad)}                                
+                            {Salad.prototype.getIngredients.call(mySalad)+', pris: '+  Salad.prototype.getPrice.call(mySalad)/*Punk 3&4*/}                                
                         </div>
                     )}
                     <p></p>

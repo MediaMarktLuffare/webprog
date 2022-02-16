@@ -7,7 +7,7 @@ class SaladCheckbox extends Component {
         return(
             <div>
                 <h4>Välj {this.props.property}</h4>
-                {Object.keys(this.props.inventory || {}).filter(name => this.props.inventory[name][this.props.property])
+                {Object.keys(this.props.inventory).filter(name => this.props.inventory[name][this.props.property])
                 .map(name =>
                     <div key={name} className='form-group form-check form-check-inline col-md-3'>
                         <input

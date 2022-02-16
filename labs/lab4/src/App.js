@@ -6,6 +6,7 @@ import ViewOrder from './ViewOrder';
 import {Link, Route, Routes} from "react-router-dom"
 import ComposeSaladWrapper from './ComposeSaladWrapper';
 import ViewIngredient from "./ViewIngredient";
+import Salad from './Salad';
 
 class App extends Component {
   constructor(props){
@@ -53,11 +54,11 @@ class App extends Component {
     //console.log('myMemory är: ' + myMemory)
 
     if(myMemory){
+      //myMemory.map(salad => Object.setPrototypeOf(salad, Salad.prototype)) //Punkt 2
       this.setState({order:  myMemory});
     } 
-        
+      
     const tempInv = {}
-    //Resterande steg
     Promise.all(
       ['foundations', 'proteins', 'extras', 'dressings'].map(property => {
         this.fetchProperty(property)
@@ -65,32 +66,14 @@ class App extends Component {
             values.map(ingredient => {
               this.fetchIngredient(property, ingredient)
               .then(data => tempInv[ingredient] = data)
-              .catch(error => console.log(error))
             })
           })
       })
     )
     .then(() => this.setState({inventory : tempInv}))
     .catch(error => console.log(error))
-
-    /* Steg 1
-    this.fetchIngredient('foundations','Sallad')
-      .then(data => this.setState({ inventory : {'Salad' : data}}))
-      .catch(error => console.log(error));
-    */
-    /* Steg 2
-    this.fetchProperty('foundations')
-      .then(values => {
-        values.forEach(ingr => 
-          this.fetchIngredient('foundations',ingr)
-          .then(data => tempInv[ingr] = data)
-          .catch(error => console.log(error))
-        )
-      })
-      .then(() => this.setState({inventory: tempInv}))
-      .catch(error => console.log(error));
-    */
-  }
+    //console.log(tempInv)
+}
 
   //Steg 1
   fetchIngredient(property, ingredient){

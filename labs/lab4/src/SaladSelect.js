@@ -13,7 +13,7 @@ class SaladSelect extends Component {
                     onChange={this.props.handleChange}                        
                 >
                     <option value=''>Gör ditt val</option>
-                    {Object.keys(this.props.inventory || {}).filter(name =>
+                    {Object.keys(this.props.inventory).filter(name =>
                     this.props.inventory[name][this.props.property]).map(name =>
                     <option key={name} value={name}>{name +', '+this.props.inventory[name].price+' kr'}</option>)}
                 </select>
