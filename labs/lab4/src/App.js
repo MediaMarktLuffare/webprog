@@ -61,10 +61,10 @@ class App extends Component {
     const tempInv = {}
     Promise.all(
       ['foundations', 'proteins', 'extras', 'dressings'].map(property => {
-        this.fetchProperty(property)
+        this.safeFetchJson('http://localhost:8080/'+property)
           .then(values => {
             values.map(ingredient => {
-              this.fetchIngredient(property, ingredient)
+              this.safeFetchJson('http://localhost:8080/'+property+'/'+ingredient)
               .then(data => tempInv[ingredient] = data)
             })
           })
@@ -74,18 +74,6 @@ class App extends Component {
     .catch(error => console.log(error))
     //console.log(tempInv)
 }
-
-  //Steg 1
-  fetchIngredient(property, ingredient){
-    const url = 'http://localhost:8080/'+property+'/'+ingredient;
-    return this.safeFetchJson(url);
-  }
-
-  //Steg 2
-  fetchProperty(property){
-    const url = 'http://localhost:8080/'+property;
-    return this.safeFetchJson(url);
-  }
 
   safeFetchJson(url) {
     return fetch(url)
